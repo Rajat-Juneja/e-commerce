@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>RJ-Shop</title>
+
+
+    <!-- BOOTSTRAP -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
+
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <script src="js/angular.min.js"></script>
+
+    <script>
+    
+    var shop = angular.module('shop',[]);
+    shop.controller('ctrl',($scope,$timeout)=>{
+       
+    });
+        
+    </script>
+
+</head>
+<body ng-app="shop" ng-controller="ctrl">
+    
+    <!-- SIGNUP/LOGIN -->
+
+    <h1 class="wow rollIn" data-wow-duration='0.25s'>Welcome to the Shopping Arena</h1>
+
+    <div class="container mainloginpage">
+        <div class="row">
+
+    <div class="col-sm-8 col-8 wow jackInTheBox">
+    </div>
+
+    <div class="mainlogin col-sm-4 col-4 wow jackInTheBox">
+        <form action="login" method="GET" name="myform" class="login">
+            <div class="inputname">
+                <input type="text" ng-model="myinput1" name="myinput1" required>
+                <span ng-show="myform.myinput1.$invalid">Enter Your Name</span>
+                <p ng-show="myform.myinput1.$error.required && myform.myinput1.$touched">Providing a username is mandatory.</p>
+            </div>
+            <div class="inputmob">
+                <input type="text" ng-pattern="/^\d{10}$/" ng-model="myinput2" name="myinput2" required>
+                <span ng-show="myform.myinput2.$untouched">Enter Your Mobile No.</span>
+                <p ng-show="myform.myinput2.$error.required && myform.myinput2.$touched">Providing a mobile number is mandatory.</p>
+                <p ng-show="myform.myinput2.$invalid && myform.myinput2.$touched">Please enter a 10 digit mobile number</p>
+               
+            </div>
+
+            <button ng-disabled="myform.$invalid" ng-style="{ 'cursor' : (myform.$valid) ? 'pointer' : 'no-drop' }" type="submit">Login</button>
+        </form>
+    </div>
+
+</div>
+</div>
+
+    <script src="js/wow.min.js"></script>
+    <script>
+        new WOW().init();
+    </script>
+</body>
+</html>

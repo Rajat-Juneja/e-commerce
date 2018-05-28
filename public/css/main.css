@@ -1,0 +1,70 @@
+*{
+    box-sizing: border-box;
+}
+
+html, body, p, h1, h2, h3, h4, h5, h6{
+    margin: 0;
+    padding: 0;
+}
+
+/* SIGNUP/LOGIN */
+h1.wow{
+    text-align: center;
+    margin-top: 4%;
+}
+
+div.mainloginpage{
+    margin-top: 5%;
+    height: 65vh;
+}
+
+div.mainloginpage div.row{
+    height: 100%;
+}
+
+div.col-8{
+    background-image: url('../images/bg.jpeg');
+    background-size: 100% 100%;
+}
+
+div.mainlogin{
+    text-align: center;
+    margin-top: 2.5%;
+}
+
+div.inputname, div.inputmob{
+    position: relative;
+    margin-bottom: 10%;
+}
+
+div.inputname input, div.inputmob input{
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid gray;
+    transition: 0.5s ease all;
+}
+
+div.inputname p, div.inputmob p{
+    color: red;
+}
+
+div.inputname input:focus + span, div.inputmob input:focus + span{
+    transform: scale(0.7,0.7) translate(-20px,-30px);
+}
+
+div.inputname span, div.inputmob span{
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: 0.5s ease all;
+}
+
+form button{
+    padding: 2% 10%;
+    cursor: pointer;
+    border: none;
+    background-color: #ecd7d7;
+    font-weight: 900;
+    color: black;
+}
+
