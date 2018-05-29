@@ -13,6 +13,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 
+    <link href="https://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet">
 
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/animate.css">
@@ -49,13 +50,18 @@
             </div>
             <div class="inputmob">
                 <input type="text" ng-pattern="/^\d{10}$/" ng-model="myinput2" name="myinput2" required>
-                <span ng-show="myform.myinput2.$untouched">Enter Your Mobile No.</span>
+                <span ng-show="myform.myinput2.$pristine">Enter Your Mobile No.</span>
                 <p ng-show="myform.myinput2.$error.required && myform.myinput2.$touched">Providing a mobile number is mandatory.</p>
                 <p ng-show="myform.myinput2.$invalid && myform.myinput2.$touched">Please enter a 10 digit mobile number</p>
                
             </div>
 
-            <button ng-disabled="myform.$invalid" ng-style="{ 'cursor' : (myform.$valid) ? 'pointer' : 'no-drop' }" type="submit">Login</button>
+            <button ng-disabled="myform.$invalid" ng-style="{ 'cursor' : (myform.$valid) ? 'pointer' : 'no-drop' }" type="button" ng-click="showotp=!showotp" ng-show="!showotp">Send OTP</button>
+            <div ng-show="showotp" class="otpenter">
+            <input type="text" placeholder="Enter OTP">
+                <p>Currently otp will not be sent, so enter 1234.</p>
+            <button type="submit" ng-disabled="myform.$invalid">Log IN</button>
+            </div>
         </form>
     </div>
 
