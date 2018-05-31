@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Prezzie</title>
+
+    <!-- BOOTSTRAP -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/angular.min.js"></script>
+
+<style>
+
+    div.first{
+        position: relative;
+    }
+
+    div.insidevid{
+        overflow: hidden;
+        height: 45vmax;
+        background-color: black;
+    }
+
+    div.insidevid video{
+    width: 100%;
+    opacity: 0.6;
+    transform: translateY(-10%);
+    }
+
+    div.topsearchbar{
+        position: absolute;
+        width: 100%;
+        top:5%;
+        padding: 0 10vw;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    div.topsearchbar h1 a{
+        color: white;
+        text-decoration: none;
+        font-size: 55px;
+        letter-spacing: 5px;
+    }
+
+    div.topsearchbar h1 a span{
+        color: #d22626 !important;
+        text-align: center;
+        font-size: 24px;
+        display: block;
+        text-align: left;
+        margin-left: 2%;
+        letter-spacing: 2px;
+    }
+
+    form.searching{
+        width: auto;
+        text-align: right;
+        padding-top: 3%;
+    }
+
+    form.searching input, form.searching button{
+        display: inline-block !important;
+    }
+
+    form.searching input{
+        border:none;
+        border-bottom: 2px solid white;
+        background-color: transparent;
+        opacity: 0;
+        transition: 0.5s ease-in-out all;
+        vertical-align: bottom;
+        width: 50%;
+        color: white;
+        font-size: 24px;
+        outline: none;
+    }
+
+    form.searching button{
+        outline: none;
+        transition: 0.5s ease-in-out all;
+        background-color: black;
+        border: 2px solid #434443;
+        color: white;
+        font-weight: 500;
+        letter-spacing: 2px;
+     border-top-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    padding: 2.5% 5%;
+    font-size: 14px;
+    }
+
+    form.searching:hover input{
+        opacity: 1;
+    }
+
+    form.searching:hover button{
+        border-color: white;
+    }
+
+    @media(max-width: 576px){
+        div.insidevid{
+            height: 35vmax;
+        }
+    }
+
+</style>
+
+<script>
+    var main = angular.module('main',[]);
+    main.controller('ctrl2',($scope)=>{
+
+        $scope.mouseOnSearch=($event)=>{
+            console.log($event);
+        };
+
+    });
+</script>
+
+</head>
+<body>
+
+
+    <div class="first">
+        <div class="insidevid">
+            <video src="videos/bg.mp4" autoplay loop muted></video>
+        </div>
+        <div class="topsearchbar">
+            <h1><a href="#">Prezzie <span>Life Is A Gift</span></a></h1>
+            <form action="" class="searching" ng-mouseover="mouserOnSearch($event)">
+                <input type="text">
+                <button type="submit">SEARCH</button>
+            </form>
+        </div>
+    </div>
+    
+</body>
+</html>
