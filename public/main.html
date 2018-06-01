@@ -16,6 +16,15 @@
 
     <link rel="stylesheet" href="css/main.css">
     <script src="js/angular.min.js"></script>
+    <script src="https://use.fontawesome.com/becd647f77.js"></script>
+
+    <script>
+        var main = angular.module('main',[]);
+        main.controller('ctrl2',($scope)=>{
+        });
+    </script>
+    
+
 
 <style>
 
@@ -78,7 +87,7 @@
         opacity: 0;
         transition: 0.5s ease-in-out all;
         vertical-align: bottom;
-        width: 50%;
+        width: 65%;
         color: white;
         font-size: 24px;
         outline: none;
@@ -92,8 +101,8 @@
         color: white;
         font-weight: 500;
         letter-spacing: 2px;
-     border-top-left-radius: 30px;
-    border-bottom-right-radius: 30px;
+     border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
     padding: 2.5% 5%;
     font-size: 14px;
     }
@@ -106,6 +115,234 @@
         border-color: white;
     }
 
+    ul.topchangetext{
+        position: absolute;
+        padding: 0;
+        top: 40%;
+        /* transform: translateY(-50%); */
+        /* left: 50%; */
+        /* transform: translate(-50%,-50%); */
+        color: white;
+        width: 100%;
+        /* padding-top: 8%; */
+    }
+
+    ul.topchangetext li{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        list-style: none;
+        font-size: 40px;
+        text-align: center;
+        transform: translate(-50%);
+        width: 100%;
+        padding: 0 10vw;
+    }
+
+    ul.topchangetext li h6{
+    text-transform: uppercase;
+    letter-spacing: 18px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    color: rgba(229, 229, 230, 0.44);
+    }
+
+    ul.topchangetext li h1{
+        margin-top: 7.5%;
+        /* font-size: 6em; */
+        font-weight: bold;
+        letter-spacing: 7px;
+        /* word-spacing: 10px; */
+    }
+
+
+    ul.topchangetext li.first{
+        opacity: 1;
+        visibility:visible;
+        animation: hide1 9s infinite;
+    }
+
+    ul.topchangetext li.second{
+        opacity: 0;
+        visibility:hidden;
+        animation: hide2 9s infinite;
+    }
+
+    ul.topchangetext li.third{
+        opacity: 0;
+        visibility:hidden;
+        animation: hide3 9s infinite;
+    }
+
+    @keyframes hide1{
+        0%{
+            opacity: 1;
+            visibility:visible;
+        }
+        25%{
+            opacity: 1;
+            visibility:visible;
+        }
+        33.3%{
+            opacity: 0;
+            visibility:hidden;
+        }
+        91.7%{
+            opacity: 0;
+            visibility:hidden;
+        }
+        100%{
+            opacity: 1;
+            visibility:visible;
+        }
+    }
+
+    @keyframes hide2{
+        0%{
+            opacity: 0;
+            visibility:hidden;
+        }
+        30%{
+            opacity: 0;
+            visibility:hidden;
+        }
+        33.3%{
+            opacity: 1;
+            visibility:visible;
+        }
+        58.3%{
+            opacity: 1;
+            visibility:visible;
+        }
+        66.7%{
+            opacity: 0;
+            visibility:hidden;
+        }
+        100%{
+            opacity: 0;
+            visibility:hidden;
+        }
+    }
+
+    @keyframes hide3{
+        0%{
+            opacity: 0;
+            visibility:hidden;
+        }
+        58.3%{
+            opacity: 0;
+            visibility:hidden;
+        }
+        66.7%{
+            opacity: 1;
+            visibility:visible;
+        }
+        91.7%{
+            opacity: 1;
+            visibility:visible;
+        }
+        100%{
+            opacity: 0;
+            visibility:hidden;
+        }
+    }
+
+    div.container.navbarcont{
+        transform: translateY(-50%);
+        padding: 0;
+        background-color: #1b1b1b;
+    }
+
+    nav.navbar{
+        padding: 0;
+    }
+
+    nav div.collapse ul{
+        width: 100%;
+    }
+
+    nav div.collapse ul li a{
+        color: white !important;
+        text-decoration: none;
+        transition: 0.3s ease-in-out all;
+        padding: 2em 6.15em !important;
+    }
+
+    nav div.collapse ul li{
+        /* display: inline-block; */
+        color: white;
+    }
+
+    nav div.collapse ul li.active{
+        background-color: #ff0000 !important;
+    }
+
+    nav div.collapse ul li.active:hover a{
+        color: white !important;
+    }
+
+    nav div.collapse ul li:hover a{
+        color: #ff0000 !important;
+    }
+
+    div.second{
+        margin-top: 5%
+    }
+
+    div.second h1{
+        position: relative;
+        width: fit-content;
+        font-size: 4vw;
+        margin-bottom: 5%;
+    }
+
+    div.second h1 i{
+        font-size: 28px;
+    }
+
+    div.second h1 i.fa-bell{
+        position: absolute;
+    color: #000;
+    transform: rotate(22deg);
+    bottom: 0px;
+    right: -24px;
+    }
+
+    div.second h1 i.fa-bell-o{
+        position: absolute;
+    color: #f00;
+    transform: rotate(-45deg);
+    bottom: 4px;
+    right: -38px;
+    }
+
+    div.second div.row h3{
+        color:#ff0000;
+        letter-spacing: 2.5px;
+        margin-bottom: 4%;
+     font-family: 'Open Sans', sans-serif;
+    }
+
+    div.second div.row p{
+        
+     font-family: 'Open Sans', sans-serif;
+     font-size: 1.25vw;
+    letter-spacing: .5px;
+    line-height: 30px;
+    color: #333;
+    }
+
+    div.second div.row i.fa-diamond{
+        color: rgba(255, 0, 0, 0.7);
+    text-shadow: -2px -1px 2px rgba(0, 0, 0, 0.33);
+    font-size: 16px;
+    padding-right: 10px;
+    vertical-align: top;
+    transform: rotate(-45deg);
+    }
+
+    div.second div.row p
+
     @media(max-width: 576px){
         div.insidevid{
             height: 35vmax;
@@ -114,16 +351,7 @@
 
 </style>
 
-<script>
-    var main = angular.module('main',[]);
-    main.controller('ctrl2',($scope)=>{
 
-        $scope.mouseOnSearch=($event)=>{
-            console.log($event);
-        };
-
-    });
-</script>
 
 </head>
 <body>
@@ -139,6 +367,88 @@
                 <input type="text">
                 <button type="submit">SEARCH</button>
             </form>
+        </div>
+        <ul class="topchangetext">
+            <li class="first">
+                <h6>VARIETY OF GIFTS</h6>
+                <h1>Just Select Your Favourite Gift</h1>
+            </li>
+
+            <li class="second">
+                <h6>NEED A GIFT..?</h6>
+                <h1>Charming & Unexpected Surprise</h1>
+            </li>
+
+            <li class="third">
+                <h6>SMILE & SHINE</h6>
+                <h1>Making Your Event More Colorful!</h1>
+            </li>
+        </ul>
+    </div>
+
+    <!-- NAVBAR -->
+    <div class="container navbarcont">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#"><i class="fa fa-home" aria-hidden="true"></i></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Shop</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+                  </li>
+              </ul>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container">
+        <div class="second">
+            <h1>What we Offer<i class="fa fa-bell-o" aria-hidden="true"></i><i class="fa fa-bell" aria-hidden="true"></i></h1>
+
+            <div class="row">
+                <div class="col-md-4 col-sm-12 col-12">
+
+                    <h3>Making your events more colourful</h3>
+                    <p>We provide the best colletion of prezzie with awesome offers & discounts .</p>
+
+                </div>
+
+                <div class="col-md-4 col-sm-12 col-12">
+
+                    <p><i class="fa fa-diamond" aria-hidden="true"></i>Mothers Day</p>
+                    <p><i class="fa fa-diamond" aria-hidden="true"></i>Valentine's Day</p>
+                    <p><i class="fa fa-diamond" aria-hidden="true"></i>Wedding Day</p>
+                    <p><i class="fa fa-diamond" aria-hidden="true"></i>Anniversary</p>
+                    <p><i class="fa fa-diamond" aria-hidden="true"></i>Get Well</p>
+                    <p><i class="fa fa-diamond" aria-hidden="true"></i>House Warming</p>
+
+
+                </div>
+
+                <div class="col-md-4 col-sm-12 col-12">
+
+                    <p><i class="fa fa-diamond" aria-hidden="true"></i>Retirement</p>
+                    <p><i class="fa fa-diamond" aria-hidden="true"></i>New Baby</p>
+                    <p><i class="fa fa-diamond" aria-hidden="true"></i>Business</p>
+                    <p><i class="fa fa-diamond" aria-hidden="true"></i>Birth Days</p>
+                    <p><i class="fa fa-diamond" aria-hidden="true"></i>Graduation Day</p>
+                    <p><i class="fa fa-diamond" aria-hidden="true"></i>Return Gifts</p>
+
+                </div>
+            </div>
         </div>
     </div>
     
