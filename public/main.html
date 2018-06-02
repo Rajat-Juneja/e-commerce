@@ -28,6 +28,10 @@
 
 <style>
 
+    p{
+        font-family: 'Open Sans', sans-serif;
+    }
+
     div.first{
         position: relative;
     }
@@ -265,7 +269,8 @@
         color: white !important;
         text-decoration: none;
         transition: 0.3s ease-in-out all;
-        padding: 2em 6.15em !important;
+        padding: 2em 5em !important;
+        font-size: 24px;
     }
 
     nav div.collapse ul li{
@@ -286,8 +291,10 @@
     }
 
     div.second{
-        margin-top: 5%
+        margin-top: 5%;
+        margin-bottom: 5%;
     }
+
 
     div.second h1{
         position: relative;
@@ -325,8 +332,8 @@
 
     div.second div.row p{
         
-     font-family: 'Open Sans', sans-serif;
-     font-size: 1.25vw;
+     
+     font-size: 16px;
     letter-spacing: .5px;
     line-height: 30px;
     color: #333;
@@ -341,7 +348,289 @@
     transform: rotate(-45deg);
     }
 
-    div.second div.row p
+    div.third{
+        background-image: url('images/bg3.jpg');
+        background-attachment: fixed;
+        background-size: 100% 100%;
+        /* height: 300px; */
+        color: white;
+    }
+
+    div.third div.container{
+        padding: 3.5em 0;
+    }
+
+    div.third h1{
+        margin-bottom: 3.5%;
+    }
+
+    div.third h1 span{
+        color: #ff0000;
+        font-size: 32px;
+        font-weight: 900;
+    }
+
+    div.third p{
+        font-size: 16px;
+        letter-spacing: 1px;
+        line-height: 30px;
+        margin-bottom: 2.5%;
+        font-weight: bold;
+    }
+
+    div.third a{
+        text-decoration: none;
+        color: white;
+        padding: 10px 30px;
+        margin-top: 2em;
+        background: #000;
+        border: 2px solid #000;
+        font-size: 15px;
+        letter-spacing: 2px;
+        transition: 0.5s ease-in-out all;
+    }
+
+    div.third a:hover{
+        border-color: white;
+    }
+
+    div.fourth{
+        background-color: rgb(27, 27, 27);
+    }
+
+    div.fourth div.container{
+        padding: 3.5em 0;
+        color: white;
+        text-align: center;
+    }
+
+    div.fourth h1{
+        position: relative;
+        width: fit-content;
+        margin: 0 auto;
+        margin-bottom: 5%;
+    }
+
+    div.fourth h1 i{
+        font-size: 26px;
+    }
+
+    div.fourth h1 i.fa-bell{
+        position: absolute;
+    transform: rotate(22deg);
+    bottom: 0px;
+    right: -28px;
+    }
+
+    div.fourth h1 i.fa-bell-o{
+        position: absolute;
+    color: rgb(255, 0, 0);
+    transform: rotate(-45deg);
+    bottom: 4px;
+    right: -42px;
+    }
+
+    div.fourth div.col-md-6{
+        margin-bottom: 5%;
+    }
+
+    div.fourth div.media div.media-body{
+        margin-left: 5%;
+        text-align: left;
+    }
+
+    div.fourth div.media i{
+        font-size: 4vw;
+        color: #ff0000;
+        position: relative;
+        z-index: 10;
+        transition: .5s ease all;
+    }
+
+    div.fourth div.media:hover i{
+        animation: rot 2s ease forwards;
+    }
+
+    @keyframes rot{
+        0%{         color: #ff0000;
+            transform: scale(1,1);
+        }
+        50%{
+            color: transparent;
+            transform: scale(1.2,1.2);
+        }
+        100%{
+            color: white;
+            transform: scale(1,1);
+        }
+    }
+
+    div.fourth div.media div.media-body h5{
+        color: rgb(255, 255, 255);
+        font-size: 1.75em;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        margin: 0px 0px 0.2em;
+    }
+
+    div.fourth div.media div.media-body p{
+        color: rgb(153, 153, 153);
+        font-size: 15px;
+        line-height: 1.8em;
+        margin: 0px;
+    }
+
+    div.footer{
+        height: 500px;
+    }
+
+    div.footer div.container{
+        padding: 3em 0;
+    }
+
+    div.footer h3{
+        margin-bottom: 5%;
+    }
+
+    div.footer p{
+        color: #707480;
+        font-size: 14px;
+        line-height: 2em;
+        margin: 0;
+        letter-spacing: 1px;
+        margin-bottom: 8%;
+    }
+
+    div.footer ul li{
+        list-style: none;
+        display: inline-block;
+            /* height: 35px;
+        width: 35px; */
+       
+    }
+
+    div.footer ul li a{
+        display: block;
+        text-decoration: none;
+        width: 35px;
+        height: 35px;   
+        margin-right: 1em;
+        transition: .5s all;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.16);
+        line-height: 35px;
+        color: #fff;
+        border-radius: 50%;
+        text-align: center;
+    }
+    
+    div.footer ul li a i{
+        font-size: 20px;
+        vertical-align: initial;
+    }
+
+    div.footer ul li a.facebook{
+        background: #3b5998;
+        vertical-align: sub;
+    }
+
+    div.footer ul li a.github{
+        background:#333;
+    }
+
+    div.footer ul li a.linkedin{
+        background:#0077B5;  
+    }
+
+    div.footer div.col-lg-4{
+        position: relative;
+    }
+
+    div.footer div.col-lg-4 img{
+        position: relative;
+        right: 5%;
+        width: 63%;
+    }
+
+
+    div.footer div.address{
+        background: #1b1b1b;
+        padding: 1.2em;
+        margin-bottom: 5%;
+        width: 100%;
+    }
+
+    div.footer div.address i{
+        color: #FFFFFF;
+    font-size: 1.5em;
+    }
+
+    div.footer div.address div.addright h6 {
+    color: #FFFFFF;
+    font-size: 1em;
+    margin: 0;
+    margin-bottom: 5%;
+    letter-spacing: 1px;
+    font-weight: 400;
+    font-family: 'Open Sans', sans-serif;
+    }
+
+    div.footer div.address p{
+        margin-bottom: 0;
+    }
+
+    div.footer div.address p a{
+        text-decoration: none;
+        color: #707480;
+    }
+
+    div.footer ul.lastlist{
+        padding: 0;
+    }
+
+    div.footer ul.lastlist li{
+        width: 100%;
+    }
+
+    div.footer ul.lastlist li p{
+        display: inline-block;
+        margin-bottom: 2%;
+        margin-left: 1%;
+    }
+
+    div.footer form input{
+        font-size: 15px;
+    color: #777;
+    width: 100% !important;
+    border: none;
+    border-bottom: 1px solid #000;
+    background: #fff;
+    padding: .8em;
+    }
+
+    div.footer form button{
+        color: #FFF;
+    background: #1b1b1b;
+    border: 2px solid #1b1b1b;
+    float: right;
+    margin: 1em auto 0;
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: capitalize;
+    letter-spacing: 2px;
+    padding: 11px 30px;
+    }
+
+    @media(max-width:992px){
+        div.col-lg-4{
+            padding-right: 0;
+            padding-left: 0;
+        }
+
+        div.row{
+            width: 100%;
+            margin: 0;
+        }
+    }
 
     @media(max-width: 576px){
         div.insidevid{
@@ -398,9 +687,6 @@
                   <a class="nav-link" href="#"><i class="fa fa-home" aria-hidden="true"></i></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">About</a>
-                </li>
-                <li class="nav-item">
                   <a class="nav-link" href="#">Shop</a>
                 </li>
                 <li class="nav-item">
@@ -446,6 +732,150 @@
                     <p><i class="fa fa-diamond" aria-hidden="true"></i>Birth Days</p>
                     <p><i class="fa fa-diamond" aria-hidden="true"></i>Graduation Day</p>
                     <p><i class="fa fa-diamond" aria-hidden="true"></i>Return Gifts</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="third">
+        <div class="container">
+            <h1>Sale! <span>40%</span> off</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent varius lectus vitae porttitor fringilla. Donec turpis orci, elementum a nunc quis, maximus varius ipsum. Sed bibendum ex in dignissim bibendum.</p>
+            <a href="#">Read More</a>
+        </div>
+    </div>
+
+    <div class="fourth">
+        <div class="container">
+            <h1>Features<i class="fa fa-bell-o" aria-hidden="true"></i><i class="fa fa-bell white-agileits" aria-hidden="true"></i></h1>
+
+            <div class="row">
+                <div class="col-md-6 col-sm-12 col-12"> 
+                    <div class="media">
+                        <i class="fa fa-cog" class="mr-3" aria-hidden="true"></i>
+                        <div class="media-body">
+                          <h5 class="mt-0">Suspendisse consectetur dapibus volutpat.</h5>
+                          <p>Phasellus dapibus felis elit, sed accumsan arcu gravida vitae. Nullam aliquam erat at lectus ullamcorper, nec interdum neque hendrerit</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-6 col-sm-12 col-12">
+
+                        <div class="media">
+                            <i class="fa fa-heart" class="mr-3" aria-hidden="true"></i>
+                            <div class="media-body">
+                                  <h5 class="mt-0">Suspendisse consectetur dapibus volutpat.</h5>
+                                  <p>Phasellus dapibus felis elit, sed accumsan arcu gravida vitae. Nullam aliquam erat at lectus ullamcorper, nec interdum neque hendrerit</p>
+                            </div>
+                        </div>
+
+                </div>
+
+                <div class="col-md-6 col-sm-12 col-12">
+
+                        <div class="media">
+                            <i class="fa fa-paper-plane" class="mr-3" aria-hidden="true"></i>
+                            <div class="media-body">
+                                  <h5 class="mt-0">Suspendisse consectetur dapibus volutpat.</h5>
+                                  <p>Phasellus dapibus felis elit, sed accumsan arcu gravida vitae. Nullam aliquam erat at lectus ullamcorper, nec interdum neque hendrerit</p>
+                            </div>
+                        </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-sm-12 col-12">
+
+                    <h3>About Us</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean bibendum urna non nisi ornare, condimentum iaculis ipsum blandit. Duis auctor vulputate metus nec luctus.</p>
+
+                    <ul>
+                        <li><a class="facebook" href="https://www.facebook.com/rajat.juneja.1998" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                        <li><a class="github" href="https://github.com/Rajat-Juneja" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a></li>
+                        <li><a class="linkedin" href="https://www.linkedin.com/in/rajat-juneja/" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                    </ul>
+
+                    <img src="images/giftfooter.jpg" alt="Gift Store">
+                </div>
+
+                <div class="col-lg-4 col-sm-12 col-12">
+
+                    <h3>Address</h3>
+                    
+                    <div class="address row">
+                                    <div class="addleft col-sm-2 col-2">
+                                        <i class="fa fa-phone" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="addright col-sm-10 col-10">
+                                        <h6>Phone Number</h6>
+                                        <p>+91 965 462 3602</p>
+                                    </div>             
+                    </div>
+
+                    <div class="address row">
+                            <div class="col-sm-2 col-2">
+                                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="addright col-10 col-sm-10">
+                                        <h6>Email Address</h6>
+                                        <p>Email :<a href="mailto:junejarajat98@gmail.com"> junejarajat98@gmail.com</a></p>
+                                    </div>
+                                </div>
+
+
+                    <div class="address row">
+                            <div class="col-2 col-sm-2">
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="addright col-10 col-sm-10">
+                                        <h6>Location</h6>
+                                        <p>Pitampura, New Delhi 110034, India. 
+                                        <span>Mobile : +91 965 462 3602</span>
+                                        </p>
+                                    </div>
+                                </div>
+                    </div>
+
+
+
+
+                <div class="col-lg-4 col-sm-12 col-12">
+
+                    <h3>Latest News</h3>
+
+                    <ul class="lastlist">
+							<li><i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+							    <p>Lorem ipsum neque vulputate</p>     
+							</li>
+							<li><i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+							    <p>Dolor amet sed quam vitae</p>   
+							</li>
+							<li><i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+							    <p>Lorem ipsum neque vulputate</p>   
+							</li>
+							<li><i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+							    <p>Dolor amet sed quam vitae</p>    
+							</li>
+							<li><i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+							    <p>Lorem ipsum neque vulputate</p>
+							</li>
+                        </ul>
+                        
+                        <h3>Stay in Touch</h3>
+
+                        <form action="" method="GET" validate>
+                            <input type="email" placeholder="Email ID" required>
+                            <button type="submit">Subscribe</button>
+                        </form>
 
                 </div>
             </div>
