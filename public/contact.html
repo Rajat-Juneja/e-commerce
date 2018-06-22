@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Prezzie</title>
+
+    <!-- BOOTSTRAP -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/angular.min.js"></script>
+    <script src="https://use.fontawesome.com/becd647f77.js"></script>
+
+    <style>
+        nav div.collapse ul li a.contact{
+            color: red !important;
+        }
+        h1.contact{
+            position: absolute;
+            top: 50%;
+            color: white;
+            width: 100%;
+            text-align: center;
+        }
+        form.contact{
+            text-align: center;
+            padding: 2.5% 0;
+            min-height: 350px;
+            background-size: contain;
+            background-image: url('../images/formbg.jpg');
+        }
+        form.contact input,
+        form.contact textarea{
+            background: transparent;
+            border:none;
+            border-bottom: 1px solid white;
+            color: white !important;
+            margin-bottom: 5%;
+            width: 80%;
+            padding: 0 2.5%;
+        }
+        form.contact ::placeholder{
+            color: white;
+        }
+        form.contact textarea{
+            margin-top: 1%;
+        }
+        form.contact button{
+            background: transparent;
+            color:white !important;
+            border: 1.5px solid white; 
+            font-size: 20px;
+            padding: 0.5% 5%;
+        }
+    </style>
+
+</head>
+<body>
+    
+    <div class="first">
+        <div class="insidevid part2">
+            <video src="videos/bg.mp4" autoplay loop muted></video>
+        </div>
+        <div class="topsearchbar">
+            <h1><a href="#">Prezzie <span>Life Is A Gift</span></a></h1>
+            <form action="" class="searching" ng-mouseover="mouserOnSearch($event)">
+                <input type="text">
+                <button type="submit">SEARCH</button>
+            </form>
+        </div>
+        <h1 class="contact">Contact</h1>
+    </div>
+
+    <!-- NAVBAR -->
+    <div class="container navbarcont">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item active">
+                  <a class="nav-link" href="main.html"><i class="fa fa-home" aria-hidden="true"></i></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Shop</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link contact" href="contact.html">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+                  </li>
+              </ul>
+            </div>
+        </nav>
+    </div>
+
+
+<!-- FORM -->
+
+<form class="contact" action="" method="post">
+    <div class="container">
+        <h1>Reach Out to Us <i class="fa fa-bell-o" aria-hidden="true"></i><i class="fa fa-bell white-agileits" aria-hidden="true"></i></h1>
+        <div class="row">
+            <div class="col-sm-6 col-6">
+                <input type="text" placeholder="First Name" required>
+            </div>
+
+            <div class="col-sm-6 col-6">
+                <input type="text" placeholder="Last Name">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-6">
+                <input type="email" placeholder="Email" required>
+            </div>
+
+            <div class="col-sm-6 col-6">
+                <input type="text" placeholder="Subject">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-12">
+                <textarea name="" placeholder="Your Message" rows="5" id="" ></textarea>
+            </div>
+        </div>
+        <div>
+            <button>Submit</button>
+        </div>
+    </div>
+</form>
+
+
+
+
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-sm-12 col-12">
+    
+                    <h3>About Us</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean bibendum urna non nisi ornare, condimentum iaculis ipsum blandit. Duis auctor vulputate metus nec luctus.</p>
+    
+                    <ul>
+                        <li><a class="facebook" href="https://www.facebook.com/rajat.juneja.1998" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                        <li><a class="github" href="https://github.com/Rajat-Juneja" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a></li>
+                        <li><a class="linkedin" href="https://www.linkedin.com/in/rajat-juneja/" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                    </ul>
+    
+                    <img src="images/giftfooter.jpg" alt="Gift Store">
+                </div>
+    
+                <div class="col-lg-4 col-sm-12 col-12">
+    
+                    <h3>Address</h3>
+                    
+                    <div class="address row">
+                                    <div class="addleft col-sm-2 col-2">
+                                        <i class="fa fa-phone" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="addright col-sm-10 col-10">
+                                        <h6>Phone Number</h6>
+                                        <p>+91 965 462 3602</p>
+                                    </div>             
+                    </div>
+    
+                    <div class="address row">
+                            <div class="col-sm-2 col-2">
+                                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="addright col-10 col-sm-10">
+                                        <h6>Email Address</h6>
+                                        <p>Email :<a href="mailto:junejarajat98@gmail.com"> junejarajat98@gmail.com</a></p>
+                                    </div>
+                                </div>
+    
+    
+                    <div class="address row">
+                            <div class="col-2 col-sm-2">
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="addright col-10 col-sm-10">
+                                        <h6>Location</h6>
+                                        <p>Pitampura, New Delhi 110034, India. 
+                                        <span>Mobile : +91 965 462 3602</span>
+                                        </p>
+                                    </div>
+                                </div>
+                    </div>
+    
+    
+    
+    
+                <div class="col-lg-4 col-sm-12 col-12">
+    
+                    <h3>Latest News</h3>
+    
+                    <ul class="lastlist">
+                            <li><i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                                <p>Lorem ipsum neque vulputate</p>     
+                            </li>
+                            <li><i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                                <p>Dolor amet sed quam vitae</p>   
+                            </li>
+                            <li><i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                                <p>Lorem ipsum neque vulputate</p>   
+                            </li>
+                            <li><i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                                <p>Dolor amet sed quam vitae</p>    
+                            </li>
+                            <li><i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                                <p>Lorem ipsum neque vulputate</p>
+                            </li>
+                        </ul>
+                        
+                        <h3>Stay in Touch</h3>
+    
+                        <form action="" method="GET" validate>
+                            <input type="email" placeholder="Email ID" required>
+                            <button type="submit">Subscribe</button>
+                        </form>
+    
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
