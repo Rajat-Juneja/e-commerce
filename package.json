@@ -3,8 +3,10 @@
   "version": "",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
     "express": "^4.16.3",
     "mongoose": "^5.1.2",
+    "nodemailer": "^4.6.7",
     "sendotp": "^1.2.8"
   }
 }

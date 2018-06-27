@@ -1,0 +1,5 @@
+Otp vala theek krna h
+Responsive krna h
+search lgani h
+data db se index.js mein bhejna h without redirecting to any page, i.e. , just sending the data.
+Scheduler dalna h or subscriptions vale mail bhejne h    :  usme mein nodemailer theek ho rkha h
