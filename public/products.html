@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Prezzie</title>
+
+    
+    <script src="js/angular.min.js"></script>
+    
+
+
+    <!-- BOOTSTRAP -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Lora:400i" rel="stylesheet">
+    <script src="https://use.fontawesome.com/becd647f77.js"></script>
+    <link rel="stylesheet" href="css/main.css">
+    <script src="bower_components/angular1-star-rating/dist/index.js"></script>
+<!-- <script src="js/product.js"></script> -->
+
+    
+<script>
+//iski module dikha  or vese yei idhr chl rhi app multiple mt bna mdlb
+        const app2 = angular.module('app2',['star-rating']);
+        app2.controller('ctrl2',($scope)=>{
+            // $scope.property='3.5';
+            $scope.rating='2.5';
+        });
+    
+    </script>
+
+
+    <!-- <script src="../bower_components/angular1-star-rating/dist/index.js"></script> -->
+
+
+
+
+
+    <style>
+    
+    nav div.collapse ul li a.shop{
+        color: red !important;
+    }
+    h1.shop{
+        position: absolute;
+        top: 50%;
+        color: white;
+        width: 100%;
+        text-align: center;
+    }
+    div.products{
+        font-family: 'Lora', serif;
+    }
+    div.products div.container div.row div.box{
+    padding: 1% 0.5% 2%;
+    border-radius: 4px;
+    transition: 0.15s ease-in-out all;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    margin-bottom: 1%;
+    border-bottom: 1px solid #DDD;
+    }
+    div.products div.container div.row div.box:hover{
+        box-shadow: 0px -8px 15px rgba(0,0,0,0.2);
+        cursor: pointer;
+    }
+    div.products div.container div.row div.img{
+        background-size: contain;
+        background-repeat: no-repeat;
+        height: 280px;
+    }
+    div.products div.container div.row div.info{
+        text-align: center;
+    }
+    div.products div.container div.row div.info h3.name{
+        margin-bottom: 3%;
+        color: #0066c0;
+        font-weight: 600;
+        font-size: 28px;
+    }
+    div.products div.container div.row div.info p{
+        margin-bottom: 2%;
+    }
+    div.products div.container div.row div.info p.price{
+        color: #B12704;
+        font-weight: 600;
+        margin-bottom: 1%;
+    }
+    div.products div.container div.row div.info p.price strike{
+        color: lightgray;
+        font-size: 14px;
+        font-weight: 500 !important;
+    }
+    div.products div.container div.row div.info p.save{
+        font-size: 12px;
+    }
+    div.products div.container div.row div.info p.save span{
+        color: #B12704;
+        font-weight: 600;
+    }
+    @media(max-width: 576px){
+        div.products div.container div.row div.img{
+            height: 45vw;
+        }
+    }
+    </style>
+
+
+<!-- <script src="../bower_components/angular1-star-rating/dist/index.js"></script> -->
+
+</head>
+<body ng-app="app2" ng-controller="ctrl2">
+    
+    <div class="first">
+        <div class="insidevid part2">
+            <video src="videos/bg.mp4" autoplay loop muted></video>
+        </div>
+        <div class="topsearchbar">
+            <h1><a href="#">Prezzie <span>Life Is A Gift</span></a></h1>
+            <form action="" class="searching" ng-mouseover="mouserOnSearch($event)">
+                <input type="text">
+                <button type="submit">SEARCH</button>
+            </form>
+        </div>
+        <h1 class="shop">Shop</h1>
+    </div>
+
+    <!-- NAVBAR -->
+    <div class="container navbarcont">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item active">
+                  <a class="nav-link" href="main.html"><i class="fa fa-home" aria-hidden="true"></i></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link shop" href="#">Shop</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="contact.html">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+                  </li>
+              </ul>
+            </div>
+        </nav>
+    </div>
+
+    <div class="products">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6 box">
+                    <div class="img" style="background-image: url('images/products/eleptoy.jpg')">
+                        <!-- <img src="images/products/eleptoy.jpg" alt="Elephant Toy"> -->
+                    </div>
+                    <div class="info">
+                        <h3 class="name">Elephant Toy</h3>
+                        <p class="price"> <strike> &#8377; 1499 </strike>&nbsp; &#8377; 1399</p>
+                        <p class="save">You Save: <span>&#8377;100</span></p>
+                     <star-rating-comp rating="rating" show-half-stars="true" read-only="true"></star-rating-comp>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6 box">
+                        <div class="img" style="background-image: url('images/products/eleptoy.jpg')">
+                            <!-- <img src="images/products/eleptoy.jpg" alt="Elephant Toy"> -->
+                        </div>
+                        <div class="info">
+                            <h3 class="name">Elephant Toy</h3>
+                            <p class="price"> <strike> &#8377; 1499 </strike>&nbsp; &#8377; 1399</p>
+                            <p class="save">You Save: <span>&#8377;100</span></p>
+                         <star-rating-comp rating="rating" show-half-stars="true" read-only="true"></star-rating-comp>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-6 box">
+                            <div class="img" style="background-image: url('images/products/eleptoy.jpg')">
+                                <!-- <img src="images/products/eleptoy.jpg" alt="Elephant Toy"> -->
+                            </div>
+                            <div class="info">
+                                <h3 class="name">Elephant Toy</h3>
+                                <p class="price"> <strike> &#8377; 1499 </strike>&nbsp; &#8377; 1399</p>
+                                <p class="save">You Save: <span>&#8377;100</span></p>
+                             <star-rating-comp rating="rating" show-half-stars="true" read-only="true"></star-rating-comp>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-6 box">
+                                <div class="img" style="background-image: url('images/products/eleptoy.jpg')">
+                                    <!-- <img src="images/products/eleptoy.jpg" alt="Elephant Toy"> -->
+                                </div>
+                                <div class="info">
+                                    <h3 class="name">Elephant Toy</h3>
+                                    <p class="price"> <strike> &#8377; 1499 </strike>&nbsp; &#8377; 1399</p>
+                                    <p class="save">You Save: <span>&#8377;100</span></p>
+                                 <star-rating-comp rating="rating" show-half-stars="true" read-only="true"></star-rating-comp>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-6 col-6 box">
+                                    <div class="img" style="background-image: url('images/products/eleptoy.jpg')">
+                                        <!-- <img src="images/products/eleptoy.jpg" alt="Elephant Toy"> -->
+                                    </div>
+                                    <div class="info">
+                                        <h3 class="name">Elephant Toy</h3>
+                                        <p class="price"> <strike> &#8377; 1499 </strike>&nbsp; &#8377; 1399</p>
+                                        <p class="save">You Save: <span>&#8377;100</span></p>
+                                     <star-rating-comp rating="rating" show-half-stars="true" read-only="true"></star-rating-comp>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-4 col-sm-6 col-6 box">
+                                        <div class="img" style="background-image: url('images/products/eleptoy.jpg')">
+                                            <!-- <img src="images/products/eleptoy.jpg" alt="Elephant Toy"> -->
+                                        </div>
+                                        <div class="info">
+                                            <h3 class="name">Elephant Toy</h3>
+                                            <p class="price"> <strike> &#8377; 1499 </strike>&nbsp; &#8377; 1399</p>
+                                            <p class="save">You Save: <span>&#8377;100</span></p>
+                                         <star-rating-comp rating="rating" show-half-stars="true" read-only="true"></star-rating-comp>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-4 col-sm-6 col-6 box">
+                                            <div class="img" style="background-image: url('images/products/eleptoy.jpg')">
+                                                <!-- <img src="images/products/eleptoy.jpg" alt="Elephant Toy"> -->
+                                            </div>
+                                            <div class="info">
+                                                <h3 class="name">Elephant Toy</h3>
+                                                <p class="price"> <strike> &#8377; 1499 </strike>&nbsp; &#8377; 1399</p>
+                                                <p class="save">You Save: <span>&#8377;100</span></p>
+                                             <star-rating-comp rating="rating" show-half-stars="true" read-only="true"></star-rating-comp>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-4 col-sm-6 col-6 box">
+                                                <div class="img" style="background-image: url('images/products/eleptoy.jpg')">
+                                                    <!-- <img src="images/products/eleptoy.jpg" alt="Elephant Toy"> -->
+                                                </div>
+                                                <div class="info">
+                                                    <h3 class="name">Elephant Toy</h3>
+                                                    <p class="price"> <strike> &#8377; 1499 </strike>&nbsp; &#8377; 1399</p>
+                                                    <p class="save">You Save: <span>&#8377;100</span></p>
+                                                 <star-rating-comp rating="rating" show-half-stars="true" read-only="true"></star-rating-comp>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-4 col-sm-6 col-6 box">
+                                                    <div class="img" style="background-image: url('images/products/eleptoy.jpg')">
+                                                        <!-- <img src="images/products/eleptoy.jpg" alt="Elephant Toy"> -->
+                                                    </div>
+                                                    <div class="info">
+                                                        <h3 class="name">Elephant Toy</h3>
+                                                        <p class="price"> <strike> &#8377; 1499 </strike>&nbsp; &#8377; 1399</p>
+                                                        <p class="save">You Save: <span>&#8377;100</span></p>
+                                                     <star-rating-comp rating="rating" show-half-stars="true" read-only="true"></star-rating-comp>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-4 col-sm-6 col-6 box">
+                                                        <div class="img" style="background-image: url('images/products/eleptoy.jpg')">
+                                                            <!-- <img src="images/products/eleptoy.jpg" alt="Elephant Toy"> -->
+                                                        </div>
+                                                        <div class="info">
+                                                            <h3 class="name">Elephant Toy</h3>
+                                                            <p class="price"> <strike> &#8377; 1499 </strike>&nbsp; &#8377; 1399</p>
+                                                            <p class="save">You Save: <span>&#8377;100</span></p>
+                                                         <star-rating-comp rating="rating" show-half-stars="true" read-only="true"></star-rating-comp>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-4 col-sm-6 col-6 box">
+                                                            <div class="img" style="background-image: url('images/products/eleptoy.jpg')">
+                                                                <!-- <img src="images/products/eleptoy.jpg" alt="Elephant Toy"> -->
+                                                            </div>
+                                                            <div class="info">
+                                                                <h3 class="name">Elephant Toy</h3>
+                                                                <p class="price"> <strike> &#8377; 1499 </strike>&nbsp; &#8377; 1399</p>
+                                                                <p class="save">You Save: <span>&#8377;100</span></p>
+                                                             <star-rating-comp rating="rating" show-half-stars="true" read-only="true"></star-rating-comp>
+                                                            </div>
+                                                        </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+<!-- Footer -->
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-sm-12 col-12">
+
+                <h3>About Us</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean bibendum urna non nisi ornare, condimentum iaculis ipsum blandit. Duis auctor vulputate metus nec luctus.</p>
+
+                <ul>
+                    <li><a class="facebook" href="https://www.facebook.com/rajat.juneja.1998" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                    <li><a class="github" href="https://github.com/Rajat-Juneja" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a></li>
+                    <li><a class="linkedin" href="https://www.linkedin.com/in/rajat-juneja/" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                </ul>
+
+                <img src="images/giftfooter.jpg" alt="Gift Store">
+            </div>
+
+            <div class="col-lg-4 col-sm-12 col-12">
+
+                <h3>Address</h3>
+                
+                <div class="address row">
+                                <div class="addleft col-sm-2 col-2">
+                                    <i class="fa fa-phone" aria-hidden="true"></i>
+                                </div>
+                                <div class="addright col-sm-10 col-10">
+                                    <h6>Phone Number</h6>
+                                    <p>+91 965 462 3602</p>
+                                </div>             
+                </div>
+
+                <div class="address row">
+                        <div class="col-sm-2 col-2">
+                                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                                </div>
+                                <div class="addright col-10 col-sm-10">
+                                    <h6>Email Address</h6>
+                                    <p>Email :<a href="mailto:junejarajat98@gmail.com"> junejarajat98@gmail.com</a></p>
+                                </div>
+                            </div>
+
+
+                <div class="address row">
+                        <div class="col-2 col-sm-2">
+                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                </div>
+                                <div class="addright col-10 col-sm-10">
+                                    <h6>Location</h6>
+                                    <p>Pitampura, New Delhi 110034, India. 
+                                    <span>Mobile : +91 965 462 3602</span>
+                                    </p>
+                                </div>
+                            </div>
+                </div>
+
+
+
+
+            <div class="col-lg-4 col-sm-12 col-12">
+
+                <h3>Latest News</h3>
+
+                <ul class="lastlist">
+                        <li><i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                            <p>Lorem ipsum neque vulputate</p>     
+                        </li>
+                        <li><i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                            <p>Dolor amet sed quam vitae</p>   
+                        </li>
+                        <li><i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                            <p>Lorem ipsum neque vulputate</p>   
+                        </li>
+                        <li><i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                            <p>Dolor amet sed quam vitae</p>    
+                        </li>
+                        <li><i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                            <p>Lorem ipsum neque vulputate</p>
+                        </li>
+                    </ul>
+                    
+                    <h3>Stay in Touch</h3>
+
+                    <form action="" method="GET" validate>
+                        <input type="email" placeholder="Email ID" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

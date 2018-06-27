@@ -7,9 +7,11 @@ const dbOperations = require('./db/usercrud');  // Functions of users
 const subOperations = require('./db/subscribecrud');  // Functions of subscriptions
 const productOperations = require('./db/productcrud');  // Functions for products   
 const nodemailer = require('nodemailer');  // For sending Mail
+var schedule = require('node-schedule');  // For Scheduling Tasks, i.e. , Subscribers mails
 
 
 
+var Subusers;
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -25,7 +27,6 @@ app.get('/login',(req,res)=>{
     var name = req.query.myinput1;
     var mob = req.query.myinput2;
     var user = new User(name,mob);
-    // console.log(user);
     dbOperations.login(mob,user,res);
     res.sendFile(__dirname+'/public/main.html');
 });
@@ -33,18 +34,28 @@ app.get('/login',(req,res)=>{
 app.post('/subscribe',(req,res)=>{
     // console.log(subOperations);
     // console.log(req.body.emailid);
+    res.redirect('back');
     var email = req.body.emailid;
     var sub = new Subs(email);
     subOperations.addUser(sub,res);
-    var Subusers = subOperations.getUsers(res);
-    console.log("Subusers  "+Subusers);
-    // console.log(mydata);
-
-    // res.redirect('/login');
-// var inter = reInterval(function () {
-// SendMailToSubs(email);
-// }, 10 * 1000);
+    // console.log(req.originalUrl);
 });
+
+
+var j = schedule.scheduleJob('0 10 * * *', function(){
+    subOperations.getUsers((error,data)=>{
+        if(error){
+            console.log(error);
+            // res.send("cant find user");
+        }
+        else{
+            Subusers = data;
+            for(let i=0;i<Subusers.length;i++){
+                SendMailToSubs(Subusers[i].email);
+            }
+        }
+    });
+  });
 
 app.post('/contactus',(req,res)=>{
     res.sendFile(__dirname+'/public/contact.html');
@@ -120,11 +131,11 @@ function SendMailToSubs(toid){
     
         // setup email data with unicode symbols
         let mailOptions = {
-            from: '"Developers " <1804rajat@gmail.com>', // sender address
+            from: '"Developer " <1804rajat@gmail.com>', // sender address
             to: toid, // list of receivers
             subject: "Hello, you subscribed on a Developer's post", // Subject line
             // text: '', // plain text body
-            html: "<b>Welcome</b> <h2>Contact Me</h2> <a href='https://github.com/rajat-juneja'>My github</a> <br> <a href='https://www.facebook.com/rajat.juneja.1998'>My facebook</a>" // html body
+            html: "<h1>Welcome</h1> <h2>Contact Me</h2> <a href='https://github.com/rajat-juneja'>My github</a> <br> <a href='https://www.facebook.com/rajat.juneja.1998'>My facebook</a>" // html body
         };
     
         // send mail with defined transport object

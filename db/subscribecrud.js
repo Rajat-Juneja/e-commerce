@@ -24,14 +24,15 @@ const subOperations = {
         });
         
     },
-    getUsers(res){
+    getUsers(callback){
         schema.find((err,users)=>{
             if(err){
-                res.send("Couldn't Send");
+                
+                callback(err,null);
             }
             else{
-                
-                
+                callback(null,users);
+               
                 // (error,users)=>{
                     
                 // }

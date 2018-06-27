@@ -1,0 +1,19 @@
+{
+  "name": "Shopping backend",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Rajat-Juneja <junejarajat98@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular1-star-rating": "^1.2.11"
+  }
+}
