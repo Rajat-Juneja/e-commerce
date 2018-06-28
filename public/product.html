@@ -1,0 +1,57 @@
+<div class="prod">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-12 col-12">
+                    <div class="boxprod" style="height: 400px;background-repeat: no-repeat;background-size: contain;background-image: url({{pr.image}});">
+                    </div>
+                </div>
+    
+                <div class="col-md-8 col-sm-12 col-12">
+                    <div class="boxprod" style="height: 400px;text-align: left;padding-left: 10%;padding-top: 2%;">
+                        <h1>{{pr.name}}</h1>
+                        <star-rating-comp title="{{pr.ratings}}" rating="pr.ratings" show-half-stars="true" read-only="true"></star-rating-comp>
+                        <table>
+                            <tr>
+                                <td>M.R.P. :</td>
+                                <td class="mrp"><strike>&#8377; {{pr.price}}</strike></td>
+                            </tr>
+                            <tr>
+                                <td>Price :</td>
+                                <td class="price"> <span>&#8377; {{pr.discounted_price}}</span></td>
+                            </tr>
+                            <tr>
+                                <td>You Save :</td>
+                                <td class="save"><span>&#8377; {{pr.price - pr.discounted_price}}</span></td>
+                            </tr>
+                            <!-- <tr ng-show="pr.available">
+                                <td><i class="fa fa-check" aria-hidden="true"></i></td>
+                                <td>In Stock</td>
+                            </tr>
+                            <tr ng-hide="!pr.available">
+                                <td><i class="fa fa-times" aria-hidden="true"></i></td>
+                                <td>Out Of Stock</td>
+                            </tr> -->
+                        </table>
+                        <p class="instock" ng-show="pr.available">
+                                <i class="fa fa-check" aria-hidden="true"></i> &nbsp; In Stock
+                        </p>
+                        <p class="outstock" ng-hide="pr.available">
+                                <i class="fa fa-times" aria-hidden="true"></i> &nbsp; Out Of Stock
+                        </p>
+                        <p class="desc">DESCRIPTION</p>
+                        <p class="desctext">{{pr.details}}</p>
+                        <form action="" class="addtocart">
+                            <input type="number" name="count" ng-model="count" id=""><br>
+                            <button><i class="fa fa-shopping-cart" aria-hidden="true"></i> &nbsp;&nbsp; Add To Cart</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    
+
+    

@@ -67,7 +67,29 @@ app.post('/contactus',(req,res)=>{
     var message = senderInfo+"\n\n "+req.body.textc;
     // console.log(fname,lname,email,subject,message);
     SendMail(subject,message);
-})
+});
+
+app.get('/products',(req,res)=>{
+    productOperations.getProds(res);
+});
+
+app.get('/product/:id',(req,res)=>{
+//     // res.send("HEllo");
+
+    productOperations.getProd(req.params.id,res);
+    console.log(req.params.id+"Inside");
+// console.log("Inside");
+    // res.sendFile(__dirname+'/public/product.html',(err)=>{
+        // if(err){
+    //         console.log(err);
+    //     }
+    //     else{
+    //         console.log("Done");
+    //     }
+    // });
+    // res.redirect('/product.html');
+    // res.sendFile(__dirname+'/public/product.html');
+});
 
 app.use((req,res,next)=>{
     res.sendFile(__dirname+'/public/error.html');
