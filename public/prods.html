@@ -12,7 +12,7 @@
                     <label for=""> <b>Sort By:</b>  &nbsp;
                         <select name="" ng-model="sort" id="">
                                 <option value="relevance">Relevance</option>
-                                <option value="ratings">Ratings</option>
+                                <option value="-ratings">Ratings</option>
                                 <option value="discounted_price">Price : Low to High</option>
                                 <option value="-discounted_price">Price : High to Low</option>
                         </select>                    
@@ -20,7 +20,7 @@
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row" ng-show="recievedall">
                 <div class="col-lg-3 col-md-4 col-sm-6 col-6 box" ng-repeat="data in prods | filter:search | orderBy:sort">
                     <a href="#/product/{{data._id}}">
                     <div class="img" style="background-image: url({{data.image}})">
@@ -34,6 +34,9 @@
                     </div>
                 </a>
                 </div>
+            </div>
+            <div ng-show="!recievedall" style="text-align: center">
+                <img src="images/loader.gif" alt="Loading..." style="width: 120px">
             </div>
         </div>
     </div>

@@ -30,13 +30,13 @@
         const app2 = angular.module('app2',['star-rating','ngRoute']);
         app2.controller('ctrl2',($scope,fact2)=>{
             // $scope.rating='2.5';
+            $scope.recievedall=false;
             $scope.sort='relevance';
             var pr = fact2.getProducts();
             pr.then(success,fail);
             function success(data){
                 $scope.prods=data.data.data;
-                $scope.pr = $scope.prods[0];
-                // console.log("Data recieved"+JSON.stringify(data.data.data));
+                $scope.recievedall=true;
             }
             function fail(err){
                 console.log("ERROR IS"+err);
@@ -221,11 +221,12 @@
         text-align: center;
     }
     div.prod div.boxprod form.addtocart input{
-        margin-bottom: 2.5%;
+        margin-bottom: 0.75%;
         text-align: center;
     }
     div.prod div.boxprod form.addtocart button{
         padding: 2% 5%;
+        margin-top: 1%;
     }
 
     @media(max-width: 576px){
@@ -273,7 +274,7 @@
                   <a class="nav-link" href="contact.html">Contact</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+                    <a class="nav-link" href="cart.html"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
                   </li>
               </ul>
             </div>
@@ -282,7 +283,7 @@
 
 <ng-view></ng-view>
 
-
+    <a href="/newlogin" class="logout">Logout</a>
     <!-- <div class="products">
         <div class="container">
 

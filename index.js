@@ -3,9 +3,11 @@ const bodyParser = require('body-parser');
 const User = require('./models/User'); // Model for User
 const Subs = require('./models/Subs'); // Model for subscriptions
 const Products = require('./models/Products'); // Model for products
+const userProd = require('./models/UserProd'); // Model for Products of User
 const dbOperations = require('./db/usercrud');  // Functions of users
 const subOperations = require('./db/subscribecrud');  // Functions of subscriptions
-const productOperations = require('./db/productcrud');  // Functions for products   
+const productOperations = require('./db/productcrud');  // Functions for products 
+const userprodOperations = require('./db/userprodcrud'); // Function for Products of individual user  
 const nodemailer = require('nodemailer');  // For sending Mail
 var schedule = require('node-schedule');  // For Scheduling Tasks, i.e. , Subscribers mails
 
@@ -19,13 +21,12 @@ app.use(express.static('public'));
 app.set('view-engine','ejs');
 app.use(bodyParser.json());
 
-
+var mob = 8178098072;
 app.get('/login',(req,res)=>{
-    // console.log(req.query.myinput1+" username");
-    // console.log(req.query.myinput2+" mobile");
-    // console.log(dbOperations);
+
     var name = req.query.myinput1;
-    var mob = req.query.myinput2;
+    mob = req.query.myinput2;
+    // console.log(mob);
     var user = new User(name,mob);
     dbOperations.login(mob,user,res);
     res.sendFile(__dirname+'/public/main.html');
@@ -74,21 +75,51 @@ app.get('/products',(req,res)=>{
 });
 
 app.get('/product/:id',(req,res)=>{
-//     // res.send("HEllo");
+    // console.log("Query",req.query);
 
     productOperations.getProd(req.params.id,res);
-    console.log(req.params.id+"Inside");
-// console.log("Inside");
-    // res.sendFile(__dirname+'/public/product.html',(err)=>{
-        // if(err){
-    //         console.log(err);
-    //     }
-    //     else{
-    //         console.log("Done");
-    //     }
-    // });
-    // res.redirect('/product.html');
-    // res.sendFile(__dirname+'/public/product.html');
+    console.log("Mbobiel",mob); 
+});
+
+app.get('/product/:id/avail',(req,res)=>{
+    // console.log("Inside --------------------");
+
+    var id = req.params.id;
+    var bought = req.query.count;
+    // console.log(req.query);
+    var Obj;
+    // productOperations.changeAvail(id,bought); //For changing product availability;
+    productOperations.getAProd(id,(err,data)=>{
+        if(err){
+            console.log(err);
+            res.redirect('back');
+        }
+        else{
+            Obj=data;
+            // console.log("ORIGINAL",Obj);
+            // data.available=bought;
+            // var Obj2 = data;
+            // console.log("SECOND ORIGINAL",bought);
+            Obj.available = bought;
+            // console.log(Obj);
+            var UserProd = new userProd(mob,Obj);
+            // console.log(UserProd);
+            userprodOperations.add(UserProd,bought);
+            res.redirect('back');
+            // res.sendFile(__dirname+'/public/products.html');
+            // console.log(Obj);
+        }
+    });
+    // res.redirect('/products');
+
+    // console.log("Params"+JSON.stringify(req.params));
+    // console.log("Body"+JSON.stringify(req.body));
+});
+
+app.get('/newlogin',(req,res)=>{
+    mob="";
+    res.sendFile(__dirname+'/public/index.html');
+
 });
 
 app.use((req,res,next)=>{

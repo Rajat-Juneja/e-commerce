@@ -1,13 +1,13 @@
 <div class="prod">
         <div class="container">
-            <div class="row">
+            <div class="row" ng-show="recieved">
                 <div class="col-md-4 col-sm-12 col-12">
                     <div class="boxprod" style="height: 400px;background-repeat: no-repeat;background-size: contain;background-image: url({{pr.image}});">
                     </div>
                 </div>
     
                 <div class="col-md-8 col-sm-12 col-12">
-                    <div class="boxprod" style="height: 400px;text-align: left;padding-left: 10%;padding-top: 2%;">
+                    <div class="boxprod" style="height: 100%;text-align: left;padding-left: 10%;padding-top: 2%;">
                         <h1>{{pr.name}}</h1>
                         <star-rating-comp title="{{pr.ratings}}" rating="pr.ratings" show-half-stars="true" read-only="true"></star-rating-comp>
                         <table>
@@ -40,12 +40,16 @@
                         </p>
                         <p class="desc">DESCRIPTION</p>
                         <p class="desctext">{{pr.details}}</p>
-                        <form action="" class="addtocart">
-                            <input type="number" name="count" ng-model="count" id=""><br>
-                            <button><i class="fa fa-shopping-cart" aria-hidden="true"></i> &nbsp;&nbsp; Add To Cart</button>
+                        <form action="{{action}}" class="addtocart">
+                            <input type="number" ng-change="checkCount(pr.available)" name="count" ng-model="count" id=""><br>
+                            <span style="color: red" ng-show="countOver">You are exceeding the count of product availability</span><br>
+                            <button ng-click="checkAvailAndBook()" ng-disabled="countOver" ng-style="countOver?{'cursor':'no-drop'}:{'cursor':'pointer'}"><i class="fa fa-shopping-cart" aria-hidden="true"></i> &nbsp;&nbsp; Add To Cart</button>
                         </form>
                     </div>
                 </div>
+            </div>
+            <div ng-show="!recieved" style="text-align: center">
+                <img src="images/loader.gif" style="width: 100px" alt="Loading...">
             </div>
         </div>
     </div>

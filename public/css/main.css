@@ -693,6 +693,23 @@ letter-spacing: 2px;
 padding: 11px 30px;
 }
 
+a.logout{
+    position: absolute;
+    bottom: 10%;
+    right: 5%;
+    position: fixed;
+    padding: 0.5% 1.5%;
+    text-decoration: none;
+    color: black;
+    background: rgba(200,200,200);
+    border-radius: 20px;
+    transition: 0.5s ease-in-out all;
+}
+a.logout:hover{
+    background: black;
+    color: white;
+}
+
 @media(max-width:992px){
     div.col-lg-4{
         padding-right: 0;
