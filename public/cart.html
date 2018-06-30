@@ -29,15 +29,253 @@
         width: 100%;
         text-align: center;
     }
+    table tr{
+        border: 1px solid thistle;
+        border-bottom: none;
+        height: 175px;
+    }
+    table tr.top{
+        border: none;
+        height: 75px;
+    }
+    table tr.top th{
+        font-size: 26px;
+    }
+    table tr th.img{
+        text-align: center;
+        width: 10%;
+    }
+    table tr th.name{
+        text-align: center;
+        width: 45%;
+        /* padding-left: 1%; */
+    }
+    table tr th.price{
+        width: 15%;
+        text-align: center;
+    }
+    table tr th.count{
+        width: 15%;
+        text-align: center;
+    }
+    table tr:last-of-type{
+        border-bottom: 1px solid thistle;
+    }
+    table tr td span{
+        cursor: pointer;
+    }
+    table tr td.img{
+        width: 10%;
+    }
+    table tr td.img img{
+        max-height: 150px;
+    }
+    table tr td.name{
+        width: 45%;
+        text-align: center;
+        /* padding-left: 1%; */
+        font-size: 22px;
+        font-weight: 600
+    }
+    table tr td.price{
+        width: 15%;
+        text-align: center;
+        font-size: 24px;
+        font-weight: 600;
+    }
+    table tr td.count{
+        text-align: center;
+        font-size: 24px;
+        font-weight: 600;
+        width: 15%;
+    }
+    table tr:hover td.remove{
+        opacity: 1;
+    }
+    table tr:hover td.remove i{
+        /* opacity: 1; */
+        transform: translate(-15px);
+    }
+    table tr td.remove{
+        text-align: right;
+        font-size: 24px;
+        font-weight: 600;
+        transition: 0.5s all ease;
+        opacity: 0;
+    }    
+    table tr td.remove i{
+        cursor: pointer;
+        transition: 1s all ease;
+        background: #e74c3c;
+        color: white;
+        padding: 1.5% 4%;
+        border-radius: 4px;
+        transform: translate(0px);
+    } 
+    div.container h2.amtpaid{
+        text-align: right;
+        margin-top: 5%;
+    }
+    div.container h2.amtpaid b{
+        margin-left: 5%;
+    }
 </style>
 
 
 <script>
     const cart = angular.module('cart',[]);
+
+    cart.controller('cartCtrl',($scope,cartFact,$timeout)=>{
+        function getUserProds(){
+            // console.log("GET DATA CALLED");
+        var pr = cartFact.getShipped();
+        pr.then(success,fail);
+        function success(data){
+            $scope.boughtItems = data.data.data;
+            $scope.totalAmount=0;
+            $scope.totalProds=0;
+            for(let i=0;i<$scope.boughtItems.length;i++){
+                // console.log($scope.totalAmount);
+                $scope.totalAmount+=($scope.boughtItems[i].Object.discounted_price * $scope.boughtItems[i].Object.bought);
+                $scope.totalProds+=$scope.boughtItems[i].Object.bought;
+                // console.log(sum);
+                // $scope.totalAmount=sum;
+            }
+            // console.log($scope.totalAmount);
+            if($scope.boughtItems.length>0){
+            $scope.showItems=true;
+            }
+            else{
+                $scope.showItems=false;
+            }
+            // console.log(data.data);
+        }
+        function fail(err){
+            console.log(err);
+        }
+    }
+    $scope.deleted=false;
+    getUserProds();
+        $scope.RemoveThis=(id)=>{
+            // console.log("CALLED REMOVING");
+            var pr = cartFact.removeIt(id);
+            pr.then(success,fail);
+        function success(data){
+            // $scope.bought = data.data.data;
+            // console.log(data.data);
+            // console.log("SUCCESSFULLY DELETED",data);
+            $scope.deleted=true;
+            $scope.deletedtext="Successfully Deleted";
+            getUserProds();
+        }
+        function fail(err){
+            // console.log(err);
+            // console.log("SUCCESSFULLY DELETED",err);
+            $scope.deleted=true;
+            $scope.deletedtext="Error in deleting, please try again";
+            }
+        };
+        $scope.showOver=false;
+        $scope.SubtractOne=(id)=>{
+            var pr = cartFact.SubOne(id);
+            pr.then(success,fail);
+        function success(data){
+            // console.log("Successfully Updated",data);
+            
+            getUserProds();
+            
+        }
+        function fail(err){
+            // console.log(err);
+            // console.log("SUCCESSFULLY DELETED",err);
+            // $scope.deleted=true;
+            console.log("Error in Updating, please try again");
+            }
+        };
+    $scope.maxId="";
+        $scope.AddOne=(id)=>{
+            var pr = cartFact.AddOne(id);
+            pr.then(success,fail);
+        function success(data){
+            // console.log("Successfully Updated",data);
+            if(data.data.Over){
+                $scope.Over=data.data.Over;
+                $scope.maxId=id;
+                $scope.showOver=true;
+                $timeout(function(){
+                    $scope.showOver=false;
+                     },1000);
+
+            }
+            getUserProds();
+        }
+        function fail(err){
+            // console.log(err);
+            // console.log("SUCCESSFULLY DELETED",err);
+            // $scope.deleted=true;
+            console.log("Error in Updating, please try again");
+            }
+        };
+
+    });
+
+    cart.factory('cartFact',($http,$q)=>{
+        var object = {
+            getShipped(){
+                var pr = $q.defer();
+                var url = '/buy';
+                $http.get(url).then(success,fail);
+                function success(data){
+                    return pr.resolve(data);
+                }
+                function fail(err){
+                    return pr.reject(err);
+                }
+                return pr.promise;
+            },
+            removeIt(id){
+                var pr = $q.defer();
+                var url = '/removed/'+id;
+                $http.get(url).then(success,fail);
+                function success(data){
+                    return pr.resolve(data);
+                }
+                function fail(err){
+                    return pr.reject(err);
+                }
+                return pr.promise; 
+            },
+            SubOne(id){
+                var pr = $q.defer();
+                var url = '/subtract/'+id;
+                $http.get(url).then(success,fail);
+                function success(data){
+                    return pr.resolve(data);
+                }
+                function fail(err){
+                    return pr.reject(err);
+                }
+                return pr.promise; 
+            },
+            AddOne(id){
+                var pr = $q.defer();
+                var url = '/add/'+id;
+                $http.get(url).then(success,fail);
+                function success(data){
+                    return pr.resolve(data);
+                }
+                function fail(err){
+                    return pr.reject(err);
+                }
+                return pr.promise; 
+            }
+        };
+        return object;
+    });
 </script>
 
 </head>
-<body>
+<body ng-app="cart" ng-controller="cartCtrl">
     
     <div class="first">
         <div class="insidevid part2">
@@ -45,7 +283,7 @@
         </div>
         <div class="topsearchbar">
             <h1><a href="#">Prezzie <span>Life Is A Gift</span></a></h1>
-            <form action="" class="searching" ng-mouseover="mouserOnSearch($event)">
+            <form action="" class="searching">
                 <input type="text">
                 <button type="submit">SEARCH</button>
             </form>
@@ -76,6 +314,49 @@
               </ul>
             </div>
         </nav>
+    </div>
+
+    <div class="container" ng-show="showItems">
+
+    <table style="width: 100%">
+        <tr class="top">
+            <th class="img">Image</th>
+            <th class="name">Name</th>
+            <th class="count">Orders</th>
+            <th class="price">Amount</th>
+            <th class=""></th>
+        </tr>
+        <tr ng-repeat="data in boughtItems">
+
+            <td class="img"><img ng-src="{{data.Object.image}}"></td>
+
+            <td class="name">{{data.Object.name}}</td>
+
+            <td class="count"> <span class="subtract" ng-click="SubtractOne(data._id)"><b>-</b></span>&nbsp;&nbsp;&nbsp;&nbsp; {{data.Object.bought}} &nbsp;&nbsp;&nbsp;&nbsp;<span ng-click="AddOne(data._id)" class="add"><b>+</b></span> <br> <p style="color: red;    padding-right: 9%;
+                font-size: 14px;" ng-show="showOver && maxId==data._id">{{Over}}</p> </td>
+
+            <td class="price">&#8377; {{data.Object.discounted_price*data.Object.bought}}</td>
+
+            <td class="remove"><i class="fa fa-trash" ng-click="RemoveThis(data._id)" aria-hidden="true"></i></td>
+
+        </tr>
+        <!-- <tr>
+            <td class="img"><img src="images/products/4.jpg" alt="Item"></td>
+            <td class="name">BLue Black Color Toy</td>
+            <td class="count">4</td>
+            <td class="remove"><i class="fa fa-trash" aria-hidden="true"></i></td>
+            </tr> -->
+            <h4 ng-show="deleted && showItems" style="text-align: center;color: red;font-weight: 600;">{{deletedtext}}</h4>
+    </table>
+    
+
+    <h2 class="amtpaid">Total Amount to be paid ({{totalProds}} items) : <b>&#8377; {{totalAmount}}</b></h2>
+
+    </div>
+
+
+    <div class="container" ng-show="!showItems">
+            <h3 style="text-align: center;color: red;font-weight: 600;">No Products to show</h3>
     </div>
 
 

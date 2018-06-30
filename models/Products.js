@@ -1,5 +1,5 @@
 class Products{
-constructor(image,name,price,discounted_price,details,ratings,available){
+constructor(image,name,price,discounted_price,details,ratings,available,bought){
     this.image=image;
     this.name=name;
     this.price=price;
@@ -7,6 +7,7 @@ constructor(image,name,price,discounted_price,details,ratings,available){
     this.details=details;
     this.ratings=ratings;
     this.available=available;
+    this.bought=0;
 }
 };
 module.exports = Products;

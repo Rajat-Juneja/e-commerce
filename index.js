@@ -78,15 +78,12 @@ app.get('/product/:id',(req,res)=>{
     // console.log("Query",req.query);
 
     productOperations.getProd(req.params.id,res);
-    console.log("Mbobiel",mob); 
+    console.log("Mobile ",mob); 
 });
 
 app.get('/product/:id/avail',(req,res)=>{
-    // console.log("Inside --------------------");
-
     var id = req.params.id;
     var bought = req.query.count;
-    // console.log(req.query);
     var Obj;
     // productOperations.changeAvail(id,bought); //For changing product availability;
     productOperations.getAProd(id,(err,data)=>{
@@ -96,30 +93,39 @@ app.get('/product/:id/avail',(req,res)=>{
         }
         else{
             Obj=data;
-            // console.log("ORIGINAL",Obj);
-            // data.available=bought;
-            // var Obj2 = data;
-            // console.log("SECOND ORIGINAL",bought);
-            Obj.available = bought;
-            // console.log(Obj);
+            Obj.bought = bought;
             var UserProd = new userProd(mob,Obj);
-            // console.log(UserProd);
             userprodOperations.add(UserProd,bought);
             res.redirect('back');
-            // res.sendFile(__dirname+'/public/products.html');
-            // console.log(Obj);
         }
     });
-    // res.redirect('/products');
-
-    // console.log("Params"+JSON.stringify(req.params));
-    // console.log("Body"+JSON.stringify(req.body));
 });
 
 app.get('/newlogin',(req,res)=>{
     mob="";
     res.sendFile(__dirname+'/public/index.html');
 
+});
+
+app.get('/buy',(req,res)=>{
+    userprodOperations.getAllProds(res);
+});
+
+app.get('/removed/:id',(req,res)=>{
+    var id = req.params.id;
+    userprodOperations.removeIt(id,res);
+});
+
+app.get('/subtract/:id',(req,res)=>{
+    var id = req.params.id;
+    var value=-1;
+    userprodOperations.UpdateIt(id,value,res);
+});
+
+app.get('/add/:id',(req,res)=>{
+    var id = req.params.id;
+    var value=1;
+    userprodOperations.UpdateIt(id,value,res);
 });
 
 app.use((req,res,next)=>{
@@ -129,7 +135,7 @@ app.use((req,res,next)=>{
 
 var server = app.listen(process.env.port|1234,()=>{
     console.log(server.address().port);
-})
+});
 
 
 // req.params  :  The info of url can be accessed

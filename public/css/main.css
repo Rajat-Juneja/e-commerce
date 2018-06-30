@@ -694,6 +694,7 @@ padding: 11px 30px;
 }
 
 a.logout{
+    z-index: 9999999;
     position: absolute;
     bottom: 10%;
     right: 5%;
