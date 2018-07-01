@@ -119,6 +119,19 @@
     div.container h2.amtpaid b{
         margin-left: 5%;
     }
+    div.container button.payamt{
+        position: relative;
+        left: 100%;
+        transform: translate(-100%);
+        margin-top: 5%;
+        padding: 1.5% 7.5%;
+        cursor: pointer;
+        border: none;
+        background-color: #ecd7d7;
+        font-weight: 900;
+        color: black;
+        border-radius: 3px;
+    }
 </style>
 
 
@@ -217,6 +230,20 @@
             }
         };
 
+        $scope.checkOut=(items)=>{
+            for(let i=0;i<items.length;i++){
+                var pr = cartFact.SubAvail(items[i].Object.name,items[i].Object.bought,items[i]._id);
+                pr.then(success,fail);
+                function success(data){
+                    console.log("Successfully");
+                    getUserProds();
+                }
+                function fail(err){
+                    console.log("Error",err);
+                }
+            }
+        }
+
     });
 
     cart.factory('cartFact',($http,$q)=>{
@@ -260,6 +287,18 @@
             AddOne(id){
                 var pr = $q.defer();
                 var url = '/add/'+id;
+                $http.get(url).then(success,fail);
+                function success(data){
+                    return pr.resolve(data);
+                }
+                function fail(err){
+                    return pr.reject(err);
+                }
+                return pr.promise; 
+            },
+            SubAvail(name,bought,id){
+                var pr = $q.defer();
+                var url = '/subavail/'+name+'/'+bought+'/'+id;
                 $http.get(url).then(success,fail);
                 function success(data){
                     return pr.resolve(data);
@@ -316,6 +355,22 @@
         </nav>
     </div>
 
+    <a href="/newlogin" class="logout">Logout</a>
+
+
+    <div class="container">
+        <div style="text-align: right;margin-bottom: 5%">
+            <a href="Orders.html" style="text-decoration: none;
+            padding: 1% 2%;
+            color: yellowgreen;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 3px;
+            background: rgb(245,245,245);">Orders History</a>
+        </div>
+    </div>
+
+
     <div class="container" ng-show="showItems">
 
     <table style="width: 100%">
@@ -352,6 +407,7 @@
 
     <h2 class="amtpaid">Total Amount to be paid ({{totalProds}} items) : <b>&#8377; {{totalAmount}}</b></h2>
 
+    <button class="payamt" ng-click="checkOut(boughtItems)">Pay Amount</button>
     </div>
 
 

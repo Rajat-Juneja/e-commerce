@@ -10,7 +10,7 @@
                 
                 <div class="col-sm-6 col-12" style="text-align: center">
                     <label for=""> <b>Sort By:</b>  &nbsp;
-                        <select name="" ng-model="sort" id="">
+                        <select name="" ng-model="sortsearch" id="">
                                 <option value="relevance">Relevance</option>
                                 <option value="-ratings">Ratings</option>
                                 <option value="discounted_price">Price : Low to High</option>
@@ -20,8 +20,8 @@
                 </div>
             </div>
             
-            <div class="row" ng-show="recievedall">
-                <div class="col-lg-3 col-md-4 col-sm-6 col-6 box" ng-repeat="data in prods | filter:search | orderBy:sort">
+            <div class="row" ng-show="recievedsearch">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-6 box" ng-repeat="data in searchprods | filter:search | orderBy:sort">
                     <a href="#/product/{{data._id}}">
                     <div class="img" style="background-image: url({{data.image}})">
                     </div>
@@ -34,29 +34,11 @@
                     </div>
                 </a>
                 </div>
-                <div ng-show="!(prods|filter:search).length" style="width: 100%;text-align: center;">
+                <div ng-show="!(searchprods|filter:search).length" style="width: 100%;text-align: center;">
                     <p style="color: red;font-weight: 600;font-size: 20px;font-family: 'Lora', serif !important;">No Products available</p>
                 </div>
             </div>
-            <!-- <div class="row" ng-show="recievedsearch">
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-6 box" ng-repeat="data in produs | filter:search | orderBy:sort">
-                        <a href="#/product/{{data._id}}">
-                        <div class="img" style="background-image: url({{data.image}})">
-                        </div>
-                        <div class="info">
-                            <h3 class="name">{{data.name}}</h3>
-                            <p class="price"> <strike> &#8377; {{data.price}} </strike>&nbsp; &#8377; {{data.discounted_price}}</p>
-                            <p class="save">You Save: <span>&#8377; {{data.price - data.discounted_price}} </span></p>
-                         <star-rating-comp title="{{data.ratings}}" rating="data.ratings" show-half-stars="true" read-only="true"></star-rating-comp>
-                         <p class="price" ng-show="data.available==0" style="color: red">Out Of Stock</p>
-                        </div>
-                    </a>
-                    </div>
-                    <div ng-show="!(produs|filter:search).length" style="width: 100%;text-align: center;">
-                        <p style="color: red;font-weight: 600;font-size: 20px;font-family: 'Lora', serif !important;">No Products available</p>
-                    </div>
-                </div> -->
-            <div ng-show="!recievedall" style="text-align: center">
+            <div ng-show="!recievedsearch" style="text-align: center">
                 <img src="images/loader.gif" alt="Loading..." style="width: 120px">
             </div>
         </div>

@@ -53,7 +53,17 @@ const userprodOperations = {
             }
         })
     },
-    // ,{"$inc":{"Object.available":value}}
+    removeAll(id,res){
+        schema.findByIdAndRemove(id,(err)=>{
+            if(err){
+                console.log(err);
+            }
+            else{
+                console.log("deleted");
+                res.json({'done':'done'});
+            }
+        })
+    },
     UpdateIt(id,value,res){
         schema.findById(id,(err,data)=>{
             if(err){
@@ -89,7 +99,17 @@ const userprodOperations = {
                 }
             }
         })
-    }
+    },
+    returnAllProds(id,callback){
+        schema.findById(id,(err,data)=>{
+            if(err){
+                callback(err,null);
+            }
+            else{
+                callback(null,data);
+            }
+        })
+    },
 };
 
 module.exports = userprodOperations;

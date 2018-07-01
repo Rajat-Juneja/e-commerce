@@ -32,13 +32,24 @@ const prodOperations={
         })
 
     },
-    changeAvail(id,count){
-        schema.findByIdAndUpdate(id,{ "$inc": { "available": -count } },(err,data)=>{
+    changeAvail(name,count,res){
+        schema.findOneAndUpdate({"name":name},{"$inc":{"available":-count}},(err)=>{
             if(err){
                 console.log(err);
             }
             else{
-                console.log("DONE");
+                res.json({'done':'done'});
+            }
+        });
+    },
+    getSearched(value,res){
+        schema.find({"name": {'$regex' : '.*' + value + '.*'}},(err,data)=>{
+            if(err){
+                console.log(err);
+            }
+            else{
+                console.log(data);
+                res.json({'data':data});
             }
         });
     }

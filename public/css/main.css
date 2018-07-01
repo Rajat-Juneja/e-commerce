@@ -711,6 +711,16 @@ a.logout:hover{
     color: white;
 }
 
+
+
+
+/* Table in cart and history */
+
+
+
+
+
+
 @media(max-width:992px){
     div.col-lg-4{
         padding-right: 0;

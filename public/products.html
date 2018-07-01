@@ -28,52 +28,27 @@
 <script>
 //iski module dikha  or vese yei idhr chl rhi app multiple mt bna mdlb
         const app2 = angular.module('app2',['star-rating','ngRoute']);
-        app2.controller('ctrl2',($scope,fact2)=>{
-            // $scope.rating='2.5';
-            $scope.recievedall=false;
-            $scope.sort='relevance';
-            var pr = fact2.getProducts();
-            pr.then(success,fail);
-            function success(data){
-                $scope.prods=data.data.data;
-                $scope.recievedall=true;
-            }
-            function fail(err){
-                console.log("ERROR IS"+err);
-            }
-        });
-        app2.factory('fact2',($http,$q)=>{
-            const object = {
-                getProducts(){
-                    var pr = $q.defer();
-                    var url="/products";
-                    $http.get(url).then(success,fail);
-                    function success(data){
-                        return pr.resolve(data);
-                    }
-                    function fail(err){
-                        return pr.reject(err);
-                    }
-    return pr.promise;
-                }
-            };
-            return object;
-        });
+       
+        
         app2.config(function ($routeProvider,$locationProvider) {
             $locationProvider.hashPrefix('');
         $routeProvider.when('/',{
-            templateUrl:'prods.html'
+            templateUrl:'prods.html',
+            controller:'ctrl2'
         })
         .when('/product/:id', {
             templateUrl: 'product.html',
             controller:'ctrl3'
-        })
+        });
     });
     
     </script>
-
+<script src="services/fact2.js"></script>
+<script src="controllers/ctrl2.js"></script>
 <script src="services/fact3.js"></script>
 <script src="controllers/ctrl3.js"></script>
+<script src="services/fact4.js"></script>
+<script src="controllers/ctrl4.js"></script>
 
     <style>
     
@@ -249,8 +224,8 @@
         <div class="topsearchbar">
             <h1><a href="#">Prezzie <span>Life Is A Gift</span></a></h1>
             <form action="" class="searching">
-                <input type="text">
-                <button type="submit">SEARCH</button>
+                <input type="text" ng-model="searched" required>
+                <button type="submit" ng-click="getSearched()">SEARCH</button>
             </form>
         </div>
         <h1 class="shop">Shop</h1>
@@ -284,147 +259,7 @@
 <ng-view></ng-view>
 
     <a href="/newlogin" class="logout">Logout</a>
-    <!-- <div class="products">
-        <div class="container">
-
-            <div class="row">
-                <div class="col-sm-6 col-12" style="text-align: center">
-                    <label for=""> <b>Search</b>  <i class="fa fa-search" aria-hidden="true"></i> &nbsp; 
-                        <input type="text" ng-model="search.name" placeholder="Enter name to search">
-                    </label>
-                </div>
-                
-                <div class="col-sm-6 col-12" style="text-align: center">
-                    <label for=""> <b>Sort By:</b>  &nbsp;
-                        <select name="" ng-model="sort" id="">
-                                <option value="relevance">Relevance</option>
-                                <option value="ratings">Ratings</option>
-                                <option value="discounted_price">Price : Low to High</option>
-                                <option value="-discounted_price">Price : High to Low</option>
-                        </select>                    
-                    </label>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-3 col-md-4 col-sm-6 col-6 box" ng-repeat="data in prods | filter:search | orderBy:sort">
-                    <a href="#/product/{{data._id}}">
-                    <div class="img" style="background-image: url({{data.image}})">
-                    </div>
-                    <div class="info">
-                        <h3 class="name">{{data.name}}</h3>
-                        <p class="price"> <strike> &#8377; {{data.price}} </strike>&nbsp; &#8377; {{data.discounted_price}}</p>
-                        <p class="save">You Save: <span>&#8377; {{data.price - data.discounted_price}} </span></p>
-                     <star-rating-comp title="{{data.ratings}}" rating="data.ratings" show-half-stars="true" read-only="true"></star-rating-comp>
-                     <p class="price" ng-show="data.available==0" style="color: red">Out Of Stock</p>
-                    </div>
-                </a>
-                </div>
-            </div>
-        </div>
-    </div> -->
-                <!-- <div class="col-lg-3 col-md-4 col-sm-6 col-6 box">
-                        <div class="img" style="background-image: url('images/products/eleptoy.jpg')">
-                             <img src="images/products/eleptoy.jpg" alt="Elephant Toy"> 
-                        </div>
-                        <div class="info">
-                            <h3 class="name">Elephant Toy</h3>
-                            <p class="price"> <strike> &#8377; 1499 </strike>&nbsp; &#8377; 1399</p>
-                            <p class="save">You Save: <span>&#8377;100</span></p>
-                         <star-rating-comp rating="rating" show-half-stars="true" read-only="true"></star-rating-comp>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-6 box">
-                            <div class="img" style="background-image: url('images/products/eleptoy.jpg')">
-                            </div>
-                            <div class="info">
-                                <h3 class="name">Elephant Toy</h3>
-                                <p class="price"> <strike> &#8377; 1499 </strike>&nbsp; &#8377; 1399</p>
-                                <p class="save">You Save: <span>&#8377;100</span></p>
-                             <star-rating-comp rating="rating" show-half-stars="true" read-only="true"></star-rating-comp>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-4 col-sm-6 col-6 box">
-                                <div class="img" style="background-image: url('images/products/eleptoy.jpg')">
-                                </div>
-                                <div class="info">
-                                    <h3 class="name">Elephant Toy</h3>
-                                    <p class="price"> <strike> &#8377; 1499 </strike>&nbsp; &#8377; 1399</p>
-                                    <p class="save">You Save: <span>&#8377;100</span></p>
-                                 <star-rating-comp rating="rating" show-half-stars="true" read-only="true"></star-rating-comp>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-4 col-sm-6 col-6 box">
-                                    <div class="img" style="background-image: url('images/products/eleptoy.jpg')">
-                                    </div>
-                                    <div class="info">
-                                        <h3 class="name">Elephant Toy</h3>
-                                        <p class="price"> <strike> &#8377; 1499 </strike>&nbsp; &#8377; 1399</p>
-                                        <p class="save">You Save: <span>&#8377;100</span></p>
-                                     <star-rating-comp rating="rating" show-half-stars="true" read-only="true"></star-rating-comp>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-6 box">
-                                        <div class="img" style="background-image: url('images/products/eleptoy.jpg')">
-                                        </div>
-                                        <div class="info">
-                                            <h3 class="name">Elephant Toy</h3>
-                                            <p class="price"> <strike> &#8377; 1499 </strike>&nbsp; &#8377; 1399</p>
-                                            <p class="save">You Save: <span>&#8377;100</span></p>
-                                         <star-rating-comp rating="rating" show-half-stars="true" read-only="true"></star-rating-comp>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-4 col-sm-6 col-6 box">
-                                            <div class="img" style="background-image: url('images/products/eleptoy.jpg')">
-                                            </div>
-                                            <div class="info">
-                                                <h3 class="name">Elephant Toy</h3>
-                                                <p class="price"> <strike> &#8377; 1499 </strike>&nbsp; &#8377; 1399</p>
-                                                <p class="save">You Save: <span>&#8377;100</span></p>
-                                             <star-rating-comp rating="rating" show-half-stars="true" read-only="true"></star-rating-comp>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3 col-md-4 col-sm-6 col-6 box">
-                                                <div class="img" style="background-image: url('images/products/eleptoy.jpg')">
-                                                </div>
-                                                <div class="info">
-                                                    <h3 class="name">Elephant Toy</h3>
-                                                    <p class="price"> <strike> &#8377; 1499 </strike>&nbsp; &#8377; 1399</p>
-                                                    <p class="save">You Save: <span>&#8377;100</span></p>
-                                                 <star-rating-comp rating="rating" show-half-stars="true" read-only="true"></star-rating-comp>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-4 col-sm-6 col-6 box">
-                                                    <div class="img" style="background-image: url('images/products/eleptoy.jpg')">
-                                                    </div>
-                                                    <div class="info">
-                                                        <h3 class="name">Elephant Toy</h3>
-                                                        <p class="price"> <strike> &#8377; 1499 </strike>&nbsp; &#8377; 1399</p>
-                                                        <p class="save">You Save: <span>&#8377;100</span></p>
-                                                     <star-rating-comp rating="rating" show-half-stars="true" read-only="true"></star-rating-comp>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-3 col-md-4 col-sm-6 col-6 box">
-                                                        <div class="img" style="background-image: url('images/products/eleptoy.jpg')">
-                                                        </div>
-                                                        <div class="info">
-                                                            <h3 class="name">Elephant Toy</h3>
-                                                            <p class="price"> <strike> &#8377; 1499 </strike>&nbsp; &#8377; 1399</p>
-                                                            <p class="save">You Save: <span>&#8377;100</span></p>
-                                                         <star-rating-comp rating="rating" show-half-stars="true" read-only="true"></star-rating-comp>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-3 col-md-4 col-sm-6 col-6 box">
-                                                            <div class="img" style="background-image: url('images/products/eleptoy.jpg')">
-                                                            </div>
-                                                            <div class="info">
-                                                                <h3 class="name">Elephant Toy</h3>
-                                                                <p class="price"> <strike> &#8377; 1499 </strike>&nbsp; &#8377; 1399</p>
-                                                                <p class="save">You Save: <span>&#8377;100</span></p>
-                                                             <star-rating-comp rating="rating" show-half-stars="true" read-only="true"></star-rating-comp>
-                                                            </div>
-                                                        </div> -->
-           
+    
 
 
 
