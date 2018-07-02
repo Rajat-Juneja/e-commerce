@@ -15,6 +15,7 @@ var schedule = require('node-schedule');  // For Scheduling Tasks, i.e. , Subscr
 const session = require("express-session");
 var cookieParser = require('cookie-parser');
 var path = require('path');
+// const jwt = require('jsonwebtoken'); // For creating tokens(sessions)
 
 
 var Subusers;
@@ -24,9 +25,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // app.use(express.static('public'));
 app.use(express.static(path.join(__dirname, 'public'), {index: 'nonon.html'}));
 
-app.set('view-engine','ejs');
-
 app.use(session({
+    key:'user',
     secret: 'thisisthesecret',
     resave: false,
     saveUninitialized: true,
@@ -50,7 +50,11 @@ app.get('/login',(req,res)=>{
     mob = req.query.myinput2;
     // console.log(mob);
     req.session.mob=mob;
+    console.log("Session",req.session);
     var user = new User(name,mob);
+    // jwt.sign({'user':user},'CantRevealThisKey',{expiresIn:'24h'},(err,token)=>{
+    //     res.json({'token':token});
+    // });
     dbOperations.login(mob,user,res);
     res.sendFile(__dirname+'/public/main.html');
 });
@@ -126,8 +130,9 @@ app.get('/product/:id/avail',(req,res)=>{
 
 app.get('/newlogin',(req,res)=>{
     // mob="";
-    req.session="";
-    res.sendFile(__dirname+'/public/index.html');
+    req.session.mob=undefined;
+    // res.sendFile(__dirname+'/public/index.html');
+    res.redirect('/');
 
 });
 
