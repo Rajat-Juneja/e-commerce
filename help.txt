@@ -1,8 +1,0 @@
-Otp vala theek krna h
-Responsive krna h
-
-
-
-search lgani h
-session lgana h mobile number k liye
-session saare routes ke liye kese? mdlb agar kahi session lost , then?

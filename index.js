@@ -29,13 +29,35 @@ app.use(session({
     key:'user',
     secret: 'thisisthesecret',
     resave: false,
+    // duration: 30 * 60 * 1000,
+    // activeDuration: 5 * 60 * 1000,
     saveUninitialized: true,
-    cookie: { secure: false,maxAge: 7200000 }
+    cookie: { secure: false,maxAge: 10000 }
   }));
 
 app.use(bodyParser.json());
 
-var mob;
+
+// function sessionChecker(req,res,next){
+//     if(req.session.mob){
+//         // console.log("NEXT");
+//         return next();
+//     }
+//     else{
+        
+//         // res.redirect('/newlogin');
+//         console.log("not done");
+//         // return next();
+//         // console.log()
+//         // req.session.reset();
+//         // req.session.mob=undefined;
+//         res.redirect('/');
+//         // res.end();
+//     //    return res.sendFile(__dirname+'/public/index.html');
+//         // res.send('done');
+//     }
+// };
+
 app.get('/',(req,res)=>{
     console.log("Started",req.session.mob);
     if(req.session.mob){    
@@ -47,10 +69,10 @@ app.get('/',(req,res)=>{
 })
 app.get('/login',(req,res)=>{
     var name = req.query.myinput1;
-    mob = req.query.myinput2;
+    var mob = req.query.myinput2;
     // console.log(mob);
     req.session.mob=mob;
-    console.log("Session",req.session);
+    // console.log("Session",req.session);
     var user = new User(name,mob);
     // jwt.sign({'user':user},'CantRevealThisKey',{expiresIn:'24h'},(err,token)=>{
     //     res.json({'token':token});
@@ -58,6 +80,18 @@ app.get('/login',(req,res)=>{
     dbOperations.login(mob,user,res);
     res.sendFile(__dirname+'/public/main.html');
 });
+
+
+
+// app.use(function (req, res, next) {
+//     // console.log('Time:', Date.now(),' Next is called');
+//     if(!req.session.mob){
+//         res.redirect('/');
+//     }
+//     else{  
+//           next();
+//     }
+//   })
 
 app.post('/subscribe',(req,res)=>{
     // console.log(subOperations);
@@ -99,10 +133,15 @@ app.post('/contactus',(req,res)=>{
 
 app.get('/products',(req,res)=>{
     productOperations.getProds(res);
+    console.log("rqst",req.sessionID);
+    // console.log("res",res);
+    // req.session.mob=undefined;
     // console.log(req.session.mob);
 });
 
 app.get('/product/:id',(req,res)=>{
+    
+    
     productOperations.getProd(req.params.id,res);
     // console.log("Mobile ",mob); 
     // console.log(req.session.mob);
@@ -131,6 +170,7 @@ app.get('/product/:id/avail',(req,res)=>{
 app.get('/newlogin',(req,res)=>{
     // mob="";
     req.session.mob=undefined;
+    // req.session.reset();
     // res.sendFile(__dirname+'/public/index.html');
     res.redirect('/');
 
@@ -199,8 +239,11 @@ app.get('/search/:val',(req,res)=>{
 
 app.use((req,res,next)=>{
     res.sendFile(__dirname+'/public/error.html');
-  })
+  });
+
   
+  
+
 
 var server = app.listen(process.env.port|1234,()=>{
     console.log(server.address().port);
@@ -217,15 +260,15 @@ nodemailer.createTestAccount((err, account) => {
     var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-               user: '1804rajat@gmail.com',
-               pass: 'tataphoton'
+               user: '****@gmail.com',
+               pass: '****'
            }
        });
 
     // setup email data with unicode symbols
     let mailOptions = {
-        from: '"Developers " <1804rajat@gmail.com>', // sender address
-        to: 'junejarajat98@gmail.com', // list of receivers
+        from: '"Developers " <****@gmail.com>', // sender address
+        to: '****@gmail.com', // list of receivers
         subject: subject, // Subject line
         text: message // plain text body
         // html: '<b>Hello world?</b>' // html body
@@ -252,14 +295,14 @@ function SendMailToSubs(toid){
         var transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                   user: '1804rajat@gmail.com',
-                   pass: 'tataphoton'
+                   user: '****@gmail.com',
+                   pass: '****'
                }
            });
     
         // setup email data with unicode symbols
         let mailOptions = {
-            from: '"Developer " <1804rajat@gmail.com>', // sender address
+            from: '"Developer " <****@gmail.com>', // sender address
             to: toid, // list of receivers
             subject: "Hello, you subscribed on a Developer's post", // Subject line
             // text: '', // plain text body
