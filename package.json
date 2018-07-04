@@ -1,6 +1,9 @@
 {
   "name": "",
   "version": "",
+  "scripts":{
+    "start":"nodemon index.js" 
+  },
   "dependencies": {
     "body-parser": "^1.18.3",
     "cookie-parser": "^1.4.3",
