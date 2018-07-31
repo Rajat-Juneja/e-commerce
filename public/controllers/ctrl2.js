@@ -5,6 +5,7 @@ app2.controller('ctrl2',function($scope,fact2){
     var pr = fact2.getProducts();
     pr.then(success,fail);
     function success(data){
+        console.log(data);
         $scope.prods=data.data.data;
         $scope.recievedall=true;
         $scope.recievedsearch=false;
@@ -12,6 +13,10 @@ app2.controller('ctrl2',function($scope,fact2){
     function fail(err){
         console.log("ERROR IS"+err);
     }
+
+    $scope.goTo=()=>{
+        location.href='http://localhost:1234/products.html#/products/search/'+$scope.searched;
+    };
 
 //     $scope.getSearched=()=>{
 //         // console.log("calaled search",$scope.searched);

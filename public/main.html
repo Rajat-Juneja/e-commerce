@@ -18,9 +18,18 @@
     <script src="js/angular.min.js"></script>
     <script src="https://use.fontawesome.com/becd647f77.js"></script>
 
+<script>
+    const main = angular.module('main',[]);
+    main.controller('mainctrl',($scope)=>{
+        $scope.goTo=()=>{
+            location.href='http://localhost:1234/products.html#/products/search/'+$scope.searched;
+        };
+    });
+</script>
+
 
 </head>
-<body>
+<body ng-app="main" ng-controller="mainctrl">
 
 
     <div class="first">
@@ -29,9 +38,9 @@
         </div>
         <div class="topsearchbar">
             <h1><a href="#">Prezzie <span>Life Is A Gift</span></a></h1>
-            <form action="/search" class="searching">
-                <input type="text">
-                <button type="submit">SEARCH</button>
+            <form class="searching">
+                <input type="text" ng-model="searched">
+                <button ng-click="goTo()">SEARCH</button>
             </form>
         </div>
         <ul class="topchangetext">

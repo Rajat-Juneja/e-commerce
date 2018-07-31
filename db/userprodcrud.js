@@ -8,7 +8,7 @@ const userprodOperations = {
             }
             else{
                 if(!data){
-                    console.log("NEW CREATION");
+                    console.log("NEW CREATION",Obj);
                     schema.create(Obj,(err,data)=>{
                         if(err){
                             console.log(err);
@@ -38,6 +38,7 @@ const userprodOperations = {
                 console.log(err);
             }
             else{
+                console.log("GET ALL PRODS",data);
                 res.json({'data':data});
             }
         });
@@ -48,30 +49,30 @@ const userprodOperations = {
                 console.log(err);
             }
             else{
-                // console.log("removed");
                 res.json({'done':'done'});
             }
         })
     },
     removeAll(id,res){
         schema.findByIdAndRemove(id,(err)=>{
+            console.log("IN FIND AND REMOVE");
             if(err){
-                console.log(err);
+                res.json({'err':err});
             }
             else{
-                console.log("deleted");
-                res.json({'done':'done'});
+                console.log("ISNIDE REMOVED");
+                // res.json({'done':'done'});
             }
         })
     },
     UpdateIt(id,value,res){
+        console.log("INSIDE UPDATE IT");
         schema.findById(id,(err,data)=>{
             if(err){
-                console.log(err);
                 res.json({'err':err});
             }
             else{   
-                console.log(data);
+
                 if(data.Object.bought==1 && value==-1){
                     schema.findByIdAndRemove(id,(err)=>{
                         if(err){
@@ -79,6 +80,7 @@ const userprodOperations = {
                         }
                         else{
                             res.json({'done':'done'});
+                            
                         }
                     })
                 }

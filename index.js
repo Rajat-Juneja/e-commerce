@@ -17,7 +17,7 @@ var cookieParser = require('cookie-parser');
 var path = require('path');
 // const jwt = require('jsonwebtoken'); // For creating tokens(sessions)
 
-
+var mobil;
 var Subusers;
 const app = express();
 
@@ -40,7 +40,6 @@ app.use(bodyParser.json());
 
 // function sessionChecker(req,res,next){
 //     if(req.session.mob){
-//         // console.log("NEXT");
 //         return next();
 //     }
 //     else{
@@ -59,8 +58,8 @@ app.use(bodyParser.json());
 // };
 
 app.get('/',(req,res)=>{
-    console.log("Started",req.session.mob);
-    if(req.session.mob){    
+    // console.log("Started",req.session.mob);
+    if(mobil){    
         res.sendFile(__dirname+'/public/main.html');
     }
     else{
@@ -70,37 +69,19 @@ app.get('/',(req,res)=>{
 app.get('/login',(req,res)=>{
     var name = req.query.myinput1;
     var mob = req.query.myinput2;
-    // console.log(mob);
-    req.session.mob=mob;
-    // console.log("Session",req.session);
+    // req.session.mob=mob;
+    mobil=mob;
     var user = new User(name,mob);
-    // jwt.sign({'user':user},'CantRevealThisKey',{expiresIn:'24h'},(err,token)=>{
-    //     res.json({'token':token});
-    // });
     dbOperations.login(mob,user,res);
+    console.log(mobil);
     res.sendFile(__dirname+'/public/main.html');
 });
 
-
-
-// app.use(function (req, res, next) {
-//     // console.log('Time:', Date.now(),' Next is called');
-//     if(!req.session.mob){
-//         res.redirect('/');
-//     }
-//     else{  
-//           next();
-//     }
-//   })
-
 app.post('/subscribe',(req,res)=>{
-    // console.log(subOperations);
-    // console.log(req.body.emailid);
     res.redirect('back');
     var email = req.body.emailid;
     var sub = new Subs(email);
     subOperations.addUser(sub,res);
-    // console.log(req.originalUrl);
 });
 
 
@@ -108,7 +89,6 @@ var j = schedule.scheduleJob('0 10 * * *', function(){
     subOperations.getUsers((error,data)=>{
         if(error){
             console.log(error);
-            // res.send("cant find user");
         }
         else{
             Subusers = data;
@@ -127,24 +107,17 @@ app.post('/contactus',(req,res)=>{
     var senderInfo = "First Name : "+fname+" , Last Name : "+lname+" , Email id : "+email;
     var subject = req.body.subc;
     var message = senderInfo+"\n\n "+req.body.textc;
-    // console.log(fname,lname,email,subject,message);
     SendMail(subject,message);
 });
 
 app.get('/products',(req,res)=>{
     productOperations.getProds(res);
-    console.log("rqst",req.sessionID);
-    // console.log("res",res);
-    // req.session.mob=undefined;
-    // console.log(req.session.mob);
 });
 
 app.get('/product/:id',(req,res)=>{
     
     
     productOperations.getProd(req.params.id,res);
-    // console.log("Mobile ",mob); 
-    // console.log(req.session.mob);
 });
 
 app.get('/product/:id/avail',(req,res)=>{
@@ -160,7 +133,8 @@ app.get('/product/:id/avail',(req,res)=>{
         else{
             Obj=data;
             Obj.bought = bought;
-            var UserProd = new userProd(req.session.mob,Obj);
+            var UserProd = new userProd(mobil,Obj);
+            console.log("Mobile",mobil);
             userprodOperations.add(UserProd,bought);
             res.redirect('back');
         }
@@ -169,7 +143,7 @@ app.get('/product/:id/avail',(req,res)=>{
 
 app.get('/newlogin',(req,res)=>{
     // mob="";
-    req.session.mob=undefined;
+    mobil=undefined;
     // req.session.reset();
     // res.sendFile(__dirname+'/public/index.html');
     res.redirect('/');
@@ -201,38 +175,29 @@ app.get('/subavail/:name/:bought/:id',(req,res)=>{
     var name = req.params.name;
     var boughtamt = req.params.bought;
     var id = req.params.id;
-    // var Obj;
-    // productOperations.changeAvail(name,boughtamt,res);
+    productOperations.changeAvail(name,boughtamt,res);
     userprodOperations.returnAllProds(id,(err,data)=>{
             if(err){
                 console.log(err);
                 res.redirect('back');
             }
             else{
-                console.log("Got all prods",data);
+                console.log(data);
                 var Obj= new Ordered(data.mobile,data.Object);
                 var dates = new Date();
-                // date = dates.toDateString();
                 Obj.date=dates;
-                console.log(Obj);
+                console.log("OBJ IS",Obj);
                 orderedOperations.addData(Obj);
                 userprodOperations.removeAll(id,res);
-                // res.sendFile(__dirname+'/public/products.html');
             }
     });
-    // orderedOperations
-    console.log("NAME",name);
-    console.log("Bought",boughtamt);
 });
 
 app.get('/Orders',(req,res)=>{
-    orderedOperations.getData(req.session.mob,res);
+    orderedOperations.getData(mobil,res);
 });
 
 app.get('/search/:val',(req,res)=>{
-    console.log("SEARCH CALLED");
-    // res.redirect('back');
-    console.log(req.params);
     var value = req.params.val;
     productOperations.getSearched(value,res);
 });

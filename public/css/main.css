@@ -141,7 +141,7 @@ form.searching input{
     border:none;
     border-bottom: 2px solid white;
     background-color: transparent;
-    opacity: 0;
+    opacity: 0.2;
     transition: 0.5s ease-in-out all;
     vertical-align: bottom;
     width: 65%;
@@ -164,7 +164,7 @@ padding: 2.5% 5%;
 font-size: 14px;
 }
 
-form.searching:hover input{
+form.searching:hover input, form.searching input:active, form.searching input:visited{
     opacity: 1;
 }
 
@@ -710,7 +710,6 @@ a.logout:hover{
     background: black;
     color: white;
 }
-
 
 
 

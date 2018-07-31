@@ -43,7 +43,8 @@
                         <form action="{{action}}" class="addtocart">
                             <input type="number" ng-change="checkCount(pr.available)" name="count" ng-model="count" id=""><br>
                             <span style="color: red" ng-show="countOver">You are exceeding the count of product availability</span><br>
-                            <button ng-click="checkAvailAndBook()" ng-disabled="countOver" ng-style="countOver?{'cursor':'no-drop'}:{'cursor':'pointer'}"><i class="fa fa-shopping-cart" aria-hidden="true"></i> &nbsp;&nbsp; Add To Cart</button>
+                            <span style="color: red" ng-show="!pr.available">This Product is out of stock.</span><br>
+                            <button ng-click="checkAvailAndBook()" ng-disabled="countOver" ng-style="(countOver || !pr.available)?{'cursor':'no-drop'}:{'cursor':'pointer'}"><i class="fa fa-shopping-cart" aria-hidden="true"></i> &nbsp;&nbsp; Add To Cart</button>
                         </form>
                     </div>
                 </div>

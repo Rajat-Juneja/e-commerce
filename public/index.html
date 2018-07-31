@@ -59,7 +59,7 @@
             <button ng-disabled="myform.$invalid" ng-style="{ 'cursor' : (myform.$valid) ? 'pointer' : 'no-drop' }" type="button" ng-click="showotp=!showotp" ng-show="!showotp">Send OTP</button>
             <div ng-show="showotp" class="otpenter">
             <input type="text" placeholder="Enter OTP">
-                <p>Currently otp will not be sent, so enter 1234.</p>
+                <p style="color: red;margin: 0.5% 0 1%">Currently otp will not be sent, so enter anything.</p>
             <button type="submit" ng-disabled="myform.$invalid">Log IN</button>
             </div>
         </form>

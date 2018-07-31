@@ -121,6 +121,10 @@
             function fail(err){
                 console.log(err);
             }
+
+            $scope.goTo=()=>{
+                location.href='http://localhost:1234/products.html#/products/search/'+$scope.searched;
+            };
             
         });
 
@@ -152,10 +156,10 @@
         </div>
         <div class="topsearchbar">
             <h1><a href="#">Prezzie <span>Life Is A Gift</span></a></h1>
-            <form action="" class="searching">
-                <input type="text">
-                <button type="submit">SEARCH</button>
-            </form>
+            <form class="searching">
+                    <input type="text" ng-model="searched">
+                    <button ng-click="goTo()">SEARCH</button>
+                </form>
         </div>
         <h1 class="hist">History</h1>
     </div>

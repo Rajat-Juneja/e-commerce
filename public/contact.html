@@ -61,8 +61,17 @@
         }
     </style>
 
+    <script>
+        const ang = angular.module('ang',[]);
+        ang.controller('angct',($scope)=>{
+            $scope.goTo=()=>{
+                location.href='http://localhost:1234/products.html#/products/search/'+$scope.searched;
+            };
+        });    
+    </script>
+
 </head>
-<body>
+<body ng-app="ang" ng-controller="angct">
     
     <div class="first">
         <div class="insidevid part2">
@@ -70,9 +79,9 @@
         </div>
         <div class="topsearchbar">
             <h1><a href="#">Prezzie <span>Life Is A Gift</span></a></h1>
-            <form action="" class="searching" ng-mouseover="mouserOnSearch($event)">
-                <input type="text">
-                <button type="submit">SEARCH</button>
+            <form class="searching">
+                <input type="text" ng-model="searched">
+                <button ng-click="goTo()">SEARCH</button>
             </form>
         </div>
         <h1 class="contact">Contact</h1>

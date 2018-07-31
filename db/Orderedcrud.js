@@ -2,6 +2,7 @@ const schema = require('./Orderedschema');
 
 const orderOps = {
     addData(Obj){
+
         schema.create(Obj,(err)=>{
             if(err){
                 console.log(err);

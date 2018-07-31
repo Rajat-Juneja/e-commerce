@@ -140,10 +140,12 @@
 
     cart.controller('cartCtrl',($scope,cartFact,$timeout)=>{
         function getUserProds(){
-            // console.log("GET DATA CALLED");
+            console.log("GET DATA CALLED");
         var pr = cartFact.getShipped();
         pr.then(success,fail);
         function success(data){
+            console.log(data);
+            
             $scope.boughtItems = data.data.data;
             $scope.totalAmount=0;
             $scope.totalProds=0;
@@ -242,7 +244,11 @@
                     console.log("Error",err);
                 }
             }
-        }
+        };
+
+        $scope.goTo=()=>{
+            location.href='http://localhost:1234/products.html#/products/search/'+$scope.searched;
+        };
 
     });
 
@@ -322,9 +328,9 @@
         </div>
         <div class="topsearchbar">
             <h1><a href="#">Prezzie <span>Life Is A Gift</span></a></h1>
-            <form action="" class="searching">
-                <input type="text">
-                <button type="submit">SEARCH</button>
+            <form class="searching">
+                <input type="text" ng-model="searched">
+                <button ng-click="goTo()">SEARCH</button>
             </form>
         </div>
         <h1 class="cart">Cart</h1>

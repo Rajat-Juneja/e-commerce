@@ -48,7 +48,7 @@ const prodOperations={
                 console.log(err);
             }
             else{
-                console.log(data);
+                // console.log(data);
                 res.json({'data':data});
             }
         });
