@@ -1,5 +1,5 @@
 const dbConfig = {
-    'url':"mongodb://localhost:27017/ecommerce?maxPoolSize=10"
+    'url':"mongodb://rjshop1:rjshop1@ds127841.mlab.com:27841/rjshop"
 }
 
 module.exports = dbConfig;
