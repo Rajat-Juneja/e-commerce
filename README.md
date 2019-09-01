@@ -12,7 +12,7 @@ It has a lot of features like:
 4. Subscribing option for daily optimized mails.
 5. Customer can view his cart and edit it from their also.
 6. Customer can look what they've ordered before with the quantity, amount paid and date on which the         order was given.
-7. User recognition using mobile number and opt feature(currently disabled and not in code due to privacy     reasons).
+7. User recognition using mobile number and otP feature(currently disabled and not in code due to privacy     reasons).
 
 ---
 
